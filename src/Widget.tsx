@@ -1,11 +1,12 @@
 import * as React from "react";
+import Clock from "./Clock";
 
-export const Widget = ({ type: string }) => {
-	const [count, setCount] = React.useState(0);
+export const Widget = ({ settings }) => {
+	console.log(settings);
 
-	return (
-		<h4>
-			{count}! <button onClick={() => setCount(count + 1)} />
-		</h4>
-	);
+	if (settings.type === "clock") {
+		return <Clock settings={settings} />;
+	}
+
+	return <strong>Wrong Settings</strong>;
 };

@@ -9,11 +9,20 @@ export default class ObsidianWidgets extends Plugin {
 		this.registerMarkdownCodeBlockProcessor(
 			"widgets",
 			(source, el, ctx) => {
-				console.log(source, el, ctx);
+				const options = {};
+
+				source
+					.split("\n")
+					.map((option: string) =>
+						option.split(":").map((option) => option.trim())
+					)
+					.forEach((optionSet) => {
+						options[optionSet[0]] = optionSet[1];
+					});
 
 				const root = createRoot(el);
 
-				root.render(<Widget type="source" />);
+				root.render(<Widget settings={options} />);
 			}
 		);
 	}
