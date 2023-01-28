@@ -1,12 +1,15 @@
 import * as React from "react";
 import Clock from "./Clock";
+import Quote from "./Quote";
 
 export const Widget = ({ settings }) => {
-	console.log(settings);
-
 	if (settings.type === "clock") {
 		return <Clock settings={settings} />;
 	}
 
-	return <strong>Wrong Settings</strong>;
+	if (settings.type === "quote") {
+		return <Quote settings={settings} />;
+	}
+
+	return <code>Wrong Settings</code>;
 };

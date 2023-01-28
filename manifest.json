@@ -1,5 +1,5 @@
 {
-	"id": "obsidian-sample-plugin",
+	"id": "obsidian-widgets",
 	"name": "Obsidian Widgets",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
