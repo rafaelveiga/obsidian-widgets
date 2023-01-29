@@ -1,15 +1,19 @@
-import { Plugin } from "obsidian";
+import { App, Plugin } from "obsidian";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Widget } from "./src/Widget";
 
 export default class ObsidianWidgets extends Plugin {
 	async onload() {
+		console.log(this.app);
 		// Configure resources needed by the plugin.
 		this.registerMarkdownCodeBlockProcessor(
 			"widgets",
 			(source, el, ctx) => {
-				const options = {};
+				const options = {
+					basePath: this.app.vault.adapter?.basePath,
+					configDir: this.app.vault.adapter?.configDir,
+				};
 
 				source
 					.split("\n")

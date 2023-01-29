@@ -3,7 +3,7 @@ import styled from "styled-components";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 
-const Countdown = ({ settings: { date, time } }) => {
+const Countdown = ({ settings: { date, to } }) => {
 	const [days, setDays] = useState(0);
 	const [hours, setHours] = useState(0);
 	const [minutes, setMinutes] = useState(0);
@@ -41,24 +41,27 @@ const Countdown = ({ settings: { date, time } }) => {
 	}, []);
 
 	return (
-		<CountdownContainer>
-			<CountdownItem>
-				<h3>{days}</h3>
-				<small>days</small>
-			</CountdownItem>
-			<CountdownItem>
-				<h3>{hours}</h3>
-				<small>hours</small>
-			</CountdownItem>
-			<CountdownItem>
-				<h3>{minutes}</h3>
-				<small>minutes</small>
-			</CountdownItem>
-			<CountdownItem>
-				<h3>{seconds}</h3>
-				<small>seconds</small>
-			</CountdownItem>
-		</CountdownContainer>
+		<>
+			<CountdownContainer>
+				<CountdownItem>
+					<h3>{days}</h3>
+					<small>days</small>
+				</CountdownItem>
+				<CountdownItem>
+					<h3>{hours}</h3>
+					<small>hours</small>
+				</CountdownItem>
+				<CountdownItem>
+					<h3>{minutes}</h3>
+					<small>minutes</small>
+				</CountdownItem>
+				<CountdownItem>
+					<h3>{seconds}</h3>
+					<small>seconds</small>
+				</CountdownItem>
+			</CountdownContainer>
+			<To>{to}</To>
+		</>
 	);
 };
 
@@ -87,6 +90,12 @@ const CountdownItem = styled.div`
 	small {
 		color: var(--text-muted);
 	}
+`;
+
+const To = styled.div`
+	text-align: center;
+	margin-top: 12px;
+	color: var(--text-muted);
 `;
 
 export default Countdown;

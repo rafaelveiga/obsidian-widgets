@@ -2,7 +2,7 @@ import * as React from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-const Clock = ({ settings: { borderColor } }) => {
+const Clock = () => {
 	const [time, setTime] = React.useState(dayjs().format("HH:mm:ss"));
 	const [date, setDate] = React.useState(
 		dayjs().format("dddd, MMMM DD, YYYY")
@@ -12,7 +12,7 @@ const Clock = ({ settings: { borderColor } }) => {
 		const clockInterval = setInterval(() => {
 			setTime(dayjs().format("HH:mm:ss"));
 			setDate(dayjs().format("dddd, MMMM DD, YYYY"));
-		}, 1000);
+		}, 100);
 
 		() => {
 			clearInterval(clockInterval);

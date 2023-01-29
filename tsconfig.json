@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"jsx": "react",
+		"allowSyntheticDefaultImports": true,
 		"baseUrl": ".",
 		"inlineSourceMap": true,
 		"inlineSources": true,

@@ -2,10 +2,11 @@ import * as React from "react";
 import Clock from "./Clock";
 import Countdown from "./Countdown";
 import Quote from "./Quote";
+import Weather from "./Weather";
 
 export const Widget = ({ settings }) => {
 	if (settings.type === "clock") {
-		return <Clock settings={settings} />;
+		return <Clock />;
 	}
 
 	if (settings.type === "quote") {
@@ -16,5 +17,14 @@ export const Widget = ({ settings }) => {
 		return <Countdown settings={settings} />;
 	}
 
-	return <code>Wrong Settings</code>;
+	if (settings.type === "weather") {
+		return <Weather settings={settings} />;
+	}
+
+	return (
+		<code>
+			Obsidian Widgets: Wrong Settings. <br /> Available widgets: "clock",
+			"quote", "countdown", "weather"
+		</code>
+	);
 };
