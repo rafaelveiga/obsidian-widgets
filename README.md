@@ -12,7 +12,7 @@ To insert a widget, simply add a code block with the language `widgets` and add 
 ```
 ````
 
-Currently available widgets are:
+Currently, the available widgets are:
 
 ## Clock
 
@@ -62,7 +62,7 @@ author: Lorem Ipsum
 
 `date`: Must be in the format `YYYY-MM-DD HH:MM:SS`
 
-`to`: Description of the countdown
+`to`: Description of the countdown (optional)
 
 #### Example
 
