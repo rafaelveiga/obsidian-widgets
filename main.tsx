@@ -1,10 +1,19 @@
-import { App, Plugin } from "obsidian";
+import { Editor, MarkdownView, Plugin } from "obsidian";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Widget } from "./src/Widget";
+import ObsidianWidgetsCommandModal from "src/CommandModal";
 
 export default class ObsidianWidgets extends Plugin {
 	async onload() {
+		this.addCommand({
+			id: "obsidian-widgets-add-widget",
+			name: "Add Widget",
+			editorCallback: (editor: Editor, view: MarkdownView) => {
+				new ObsidianWidgetsCommandModal(this.app, editor).open();
+			},
+		});
+
 		this.registerMarkdownCodeBlockProcessor(
 			"widgets",
 			(source, el, ctx) => {
