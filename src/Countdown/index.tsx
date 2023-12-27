@@ -7,10 +7,15 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 	const [hours, setHours] = useState(0);
 	const [minutes, setMinutes] = useState(0);
 	const [seconds, setSeconds] = useState(0);
+	const [invalidDate, setInvalidDate] = useState(false);
 
 	useEffect(() => {
 		const endTime = moment(`${date}`);
 
+		if (!endTime.isValid()) {
+			setInvalidDate(true);
+			return;
+		}
 		const clockInterval = setInterval(() => {
 			const currentTime = moment();
 			const endOfCurrentDay = moment().endOf("day");
@@ -26,12 +31,22 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 			setHours(-hoursDiff);
 			setMinutes(-minutesDiff);
 			setSeconds(-secondsDiff);
-		}, 100);
+		}, 1000);
 
 		() => {
 			clearInterval(clockInterval);
 		};
 	}, []);
+
+	if (invalidDate) {
+		return (
+			<CountdownContainer>
+				<CountdownItem>
+					<h3>Invalid Date</h3>
+				</CountdownItem>
+			</CountdownContainer>
+		);
+	}
 
 	return (
 		<>

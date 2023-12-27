@@ -47,7 +47,5 @@ export default class ObsidianWidgets extends Plugin {
 			}
 		);
 	}
-	async onunload() {
-		// Release any resources configured by the plugin.
-	}
+	async onunload() {}
 }
