@@ -73,3 +73,9 @@ date: 2024-01-01 00:00:00
 to: New Year! 🎉
 ```
 ````
+
+## Command Pallete
+
+Obsidian Widgets also comes with a handy command on the command pallete (Ctrl+P) to add widgets on the fly
+
+![Command Pallete](public/command-pallete.png)
