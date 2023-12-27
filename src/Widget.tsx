@@ -1,9 +1,9 @@
 import * as React from "react";
 import Clock from "./Clock";
-import Countdown from "./Countdown";
-import Quote from "./Quote";
+import Countdown, { CountdownProps } from "./Countdown";
+import Quote, { QuoteProps } from "./Quote";
 
-export const Widget = ({ settings }) => {
+export const Widget = ({ settings }: WidgetProps) => {
 	if (settings.type === "clock") {
 		return <Clock />;
 	}
@@ -23,3 +23,7 @@ export const Widget = ({ settings }) => {
 		</code>
 	);
 };
+
+interface WidgetProps {
+	settings: QuoteProps | CountdownProps;
+}

@@ -1,4 +1,4 @@
-import { Editor, MarkdownView, Plugin } from "obsidian";
+import { Editor, MarkdownView, Notice, Plugin } from "obsidian";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Widget } from "./src/Widget";
@@ -14,13 +14,23 @@ export default class ObsidianWidgets extends Plugin {
 			},
 		});
 
+		this.addRibbonIcon("cuboid", "Add Widget", () => {
+			const editor =
+				this.app.workspace.getActiveViewOfType(MarkdownView)?.editor;
+
+			if (editor) {
+				new ObsidianWidgetsCommandModal(this.app, editor).open();
+			} else {
+				new Notice(
+					"Obsidian Widgets: No cursor placement found. Please place your cursor in your note where you like the widget to be inserted."
+				);
+			}
+		});
+
 		this.registerMarkdownCodeBlockProcessor(
 			"widgets",
 			(source, el, ctx) => {
-				const options = {
-					basePath: this.app.vault.adapter?.basePath,
-					configDir: this.app.vault.adapter?.configDir,
-				};
+				const options = {};
 
 				source
 					.split("\n")

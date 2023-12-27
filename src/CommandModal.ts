@@ -8,17 +8,17 @@ interface Widget {
 const ALL_WIDGETS = [
 	{
 		title: "Clock",
-		markdown: "```widgets\ntype: clock\n```",
+		markdown: "```widgets\ntype: clock\n```\n",
 	},
 	{
 		title: "Countdown",
 		markdown:
-			"```widgets\ntype: countdown\ndate: YYYY-MM-DD HH:MM:SS\nto:\n```",
+			"```widgets\ntype: countdown\ndate: YYYY-MM-DD HH:MM:SS\nto:\n```\n",
 	},
 	{
 		title: "Quote",
 		markdown:
-			"```widgets\ntype: quote\nquote: Lorem ipsum dolor sit amet\nauthor: Lorem Ipsum\n```",
+			"```widgets\ntype: quote\nquote: Lorem ipsum dolor sit amet\nauthor: Lorem Ipsum\n```\n",
 	},
 ];
 

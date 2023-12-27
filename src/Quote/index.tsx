@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-const Quote = ({ settings: { quote, author } }) => {
+const Quote = ({ settings: { quote, author } }: QuoteProps) => {
 	return (
 		<QuoteContainer>
 			<QuoteText>"{quote}"</QuoteText>
@@ -32,3 +32,11 @@ const Author = styled.div`
 `;
 
 export default Quote;
+
+export interface QuoteProps {
+	settings: {
+		type: "quote";
+		quote: string;
+		author: string;
+	};
+}

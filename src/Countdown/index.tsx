@@ -100,8 +100,9 @@ const To = styled.div`
 
 export default Countdown;
 
-interface CountdownProps {
+export interface CountdownProps {
 	settings: {
+		type: "countdown";
 		date: string;
 		to: string;
 	};
