@@ -3,7 +3,7 @@ import styled from "styled-components";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 
-const Countdown = ({ settings: { date, to } }) => {
+const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 	const [days, setDays] = useState(0);
 	const [hours, setHours] = useState(0);
 	const [minutes, setMinutes] = useState(0);
@@ -99,3 +99,10 @@ const To = styled.div`
 `;
 
 export default Countdown;
+
+interface CountdownProps {
+	settings: {
+		date: string;
+		to: string;
+	};
+}
