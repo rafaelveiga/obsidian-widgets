@@ -5,8 +5,6 @@ import { Widget } from "./src/Widget";
 
 export default class ObsidianWidgets extends Plugin {
 	async onload() {
-		console.log(this.app);
-		// Configure resources needed by the plugin.
 		this.registerMarkdownCodeBlockProcessor(
 			"widgets",
 			(source, el, ctx) => {
