@@ -38,11 +38,13 @@ export default class ObsidianWidgets extends Plugin {
 						option.split(":").map((option) => option.trim())
 					)
 					.forEach((optionSet) => {
+						// @ts-ignore
 						options[optionSet[0]] = optionSet[1];
 					});
 
 				const root = createRoot(el);
 
+				// @ts-ignore
 				root.render(<Widget settings={options} />);
 			}
 		);

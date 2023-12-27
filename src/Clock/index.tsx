@@ -50,3 +50,9 @@ const Date = styled.div`
 `;
 
 export default Clock;
+
+export interface ClockProps {
+	settings: {
+		type: "clock";
+	};
+}
