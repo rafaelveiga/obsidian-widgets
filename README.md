@@ -14,7 +14,7 @@ To insert a widget, simply add a code block with the language `widgets` and add 
 
 Currently available widgets are:
 
-### Clock
+## Clock
 
 ![Clock](public/clock.png)
 
@@ -30,7 +30,7 @@ type: clock
 ```
 ````
 
-### Quote
+## Quote
 
 ![Quote](public/quote.png)
 
@@ -52,7 +52,7 @@ author: Lorem Ipsum
 ```
 ````
 
-### Countdown
+## Countdown
 
 ![Countdown](public/countdown.png)
 
