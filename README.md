@@ -20,7 +20,7 @@ Currently, the available widgets are:
 
 #### Configuration Body
 
-_none_
+`type`: clock
 
 #### Example
 
