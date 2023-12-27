@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { moment } from "obsidian";
 import styled from "styled-components";
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
 
 const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 	const [days, setDays] = useState(0);
@@ -10,24 +9,18 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 	const [seconds, setSeconds] = useState(0);
 
 	useEffect(() => {
-		dayjs.extend(duration);
-		const endTime = dayjs(`${date}`);
+		const endTime = moment(`${date}`);
+
 		const clockInterval = setInterval(() => {
-			const currentTime = dayjs();
+			const currentTime = moment();
+			const endOfCurrentDay = moment().endOf("day");
+			const endOfCurrentHour = moment().endOf("hour");
+			const endOfCurrentMinute = moment().endOf("minute");
 
 			const daysDiff = endTime.diff(currentTime, "days");
-			const hoursDiff = currentTime.diff(
-				currentTime.endOf("day"),
-				"hours"
-			);
-			const minutesDiff = currentTime.diff(
-				currentTime.endOf("hour"),
-				"minutes"
-			);
-			const secondsDiff = currentTime.diff(
-				currentTime.endOf("minute"),
-				"seconds"
-			);
+			const hoursDiff = currentTime.diff(endOfCurrentDay, "hours");
+			const minutesDiff = currentTime.diff(endOfCurrentHour, "minutes");
+			const secondsDiff = currentTime.diff(endOfCurrentMinute, "seconds");
 
 			setDays(daysDiff);
 			setHours(-hoursDiff);

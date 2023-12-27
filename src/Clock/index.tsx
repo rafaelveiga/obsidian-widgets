@@ -1,17 +1,17 @@
 import * as React from "react";
-import dayjs from "dayjs";
+import { moment } from "obsidian";
 import styled from "styled-components";
 
 const Clock = () => {
-	const [time, setTime] = React.useState(dayjs().format("HH:mm:ss"));
+	const [time, setTime] = React.useState(moment().format("HH:mm:ss"));
 	const [date, setDate] = React.useState(
-		dayjs().format("dddd, MMMM DD, YYYY")
+		moment().format("dddd, MMMM DD, YYYY")
 	);
 
 	React.useEffect(() => {
 		const clockInterval = setInterval(() => {
-			setTime(dayjs().format("HH:mm:ss"));
-			setDate(dayjs().format("dddd, MMMM DD, YYYY"));
+			setTime(moment().format("HH:mm:ss"));
+			setDate(moment().format("dddd, MMMM DD, YYYY"));
 		}, 100);
 
 		() => {
