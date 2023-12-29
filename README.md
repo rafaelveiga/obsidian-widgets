@@ -1,6 +1,6 @@
 # Obsidian Widgets
 
-Adds widgets within Obsidian
+Adds cool widgets within Obsidian notes
 
 ## Usage
 
@@ -79,3 +79,13 @@ to: New Year! 🎉
 Obsidian Widgets also comes with a handy command on the command pallete (Ctrl+P) to add widgets on the fly
 
 ![Command Pallete](public/command-pallete.png)
+
+## Suggestions
+
+-   [Widget requests, bugs, new feature requests](https://github.com/rafaelveiga/obsidian-widgets/issues)
+
+## Support
+
+If you find this plugin useful and would like to support its development, you can sponsor me on Ko-Fi
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z0SNIS3)
