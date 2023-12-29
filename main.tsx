@@ -7,14 +7,14 @@ import ObsidianWidgetsCommandModal from "src/CommandModal";
 export default class ObsidianWidgets extends Plugin {
 	async onload() {
 		this.addCommand({
-			id: "obsidian-widgets-add-widget",
+			id: "add-widget",
 			name: "Add Widget",
 			editorCallback: (editor: Editor, view: MarkdownView) => {
 				new ObsidianWidgetsCommandModal(this.app, editor).open();
 			},
 		});
 
-		this.addRibbonIcon("cuboid", "Add Widget", () => {
+		this.addRibbonIcon("cuboid", "Add widget", () => {
 			const editor =
 				this.app.workspace.getActiveViewOfType(MarkdownView)?.editor;
 

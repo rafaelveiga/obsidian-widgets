@@ -47,7 +47,7 @@ type: clock
 ````
 ```widgets
 type: quote
-quote: "Lorem ipsum dolor sit amet"
+quote: Lorem ipsum dolor sit amet
 author: Lorem Ipsum
 ```
 ````
