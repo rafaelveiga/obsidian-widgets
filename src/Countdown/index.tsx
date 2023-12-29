@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { moment } from "obsidian";
-import styled from "styled-components";
 
 const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 	const [days, setDays] = useState(0);
@@ -40,71 +39,38 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 
 	if (invalidDate) {
 		return (
-			<CountdownContainer>
-				<CountdownItem>
+			<div className="Countdown_Container">
+				<div className="Countdown_Item">
 					<h3>Invalid Date</h3>
-				</CountdownItem>
-			</CountdownContainer>
+				</div>
+			</div>
 		);
 	}
 
 	return (
 		<>
-			<CountdownContainer>
-				<CountdownItem>
+			<div className="Countdown_Container">
+				<div className="Countdown_Item">
 					<h3>{days}</h3>
 					<small>days</small>
-				</CountdownItem>
-				<CountdownItem>
+				</div>
+				<div className="Countdown_Item">
 					<h3>{hours}</h3>
 					<small>hours</small>
-				</CountdownItem>
-				<CountdownItem>
+				</div>
+				<div className="Countdown_Item">
 					<h3>{minutes}</h3>
 					<small>minutes</small>
-				</CountdownItem>
-				<CountdownItem>
+				</div>
+				<div className="Countdown_Item">
 					<h3>{seconds}</h3>
 					<small>seconds</small>
-				</CountdownItem>
-			</CountdownContainer>
-			<To>{to}</To>
+				</div>
+			</div>
+			<div className="Countdown_To">{to}</div>
 		</>
 	);
 };
-
-const CountdownContainer = styled.div`
-	display: flex;
-	justify-content: space-between;
-	gap: 10px;
-`;
-
-const CountdownItem = styled.div`
-	text-align: center;
-	border: 1px solid var(--color-accent-1);
-	border-radius: 10px;
-	padding: 20px 0;
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-
-	h3 {
-		font-size: 50px;
-		line-height: 50px;
-		margin: 0px;
-	}
-
-	small {
-		color: var(--text-muted);
-	}
-`;
-
-const To = styled.div`
-	text-align: center;
-	margin-top: 12px;
-	color: var(--text-muted);
-`;
 
 export default Countdown;
 

@@ -6,3 +6,85 @@ available in the app when your plugin is enabled.
 If your plugin does not need CSS, delete this file.
 
 */
+
+/*
+  Clock Widget
+*/
+.Clock_Face {
+  font-size: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.Clock_Divider {
+  height: 1px;
+  width: 100%;
+  margin: 20px 0;
+  background: var(--color-accent-1)
+}
+
+.Clock_Date {
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--text-muted);
+}
+
+/*
+  Quote Widget
+*/
+.Quote_Container {
+  padding: 30px;
+	text-align: center;
+
+	background: var(--color-base-10);
+	border: 1px solid var(--color-accent-1);
+	border-radius: 15px;
+}
+
+.Quote_Text {
+  font-size: 20px;
+	font-family: serif;
+
+	font-style: italic !important; /* overwriting obsidian default style */
+}
+
+.Quote_Author {
+  font-size: 12px;
+	color: var(--text-muted);
+}
+
+/*
+  Countdown Widget
+*/
+.Countdown_Container {
+  display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.Countdown_Item {
+  text-align: center;
+	border: 1px solid var(--color-accent-1);
+	border-radius: 10px;
+	padding: 20px 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.Countdown_Item h3 {
+  font-size: 50px;
+	line-height: 50px;
+	margin: 0px;
+}
+
+.Countdown_Item small {
+  color: var(--text-muted)
+}
+
+.Countdown_To {
+  text-align: center;
+	margin-top: 12px;
+	color: var(--text-muted);
+}
