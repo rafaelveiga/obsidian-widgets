@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-widgets",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Add cool widgets to your notes or your dashboard in Obsidian",
 	"main": "main.js",
 	"scripts": {
