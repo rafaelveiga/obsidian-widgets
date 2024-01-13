@@ -3,7 +3,7 @@
 	"name": "Widgets",
 	"version": "0.0.4",
 	"minAppVersion": "0.15.0",
-	"description": "Adds widgets to your Obsidian notes like Clock, Countdown and Quotes.",
+	"description": "Adds widgets to your notes like clock, countdown and quotes.",
 	"author": "Rafael Veiga",
 	"authorUrl": "https://rafaelveiga.github.io/",
 	"fundingUrl": "https://ko-fi.com/rafaelveiga",
