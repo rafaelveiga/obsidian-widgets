@@ -22,7 +22,7 @@ const ALL_WIDGETS = [
 	},
 ];
 
-export default class ExampleModal extends FuzzySuggestModal<Widget> {
+export default class WidgetsCommandModal extends FuzzySuggestModal<Widget> {
 	editor: Editor;
 
 	constructor(app: App, editor: Editor) {

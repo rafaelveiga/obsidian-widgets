@@ -20,8 +20,8 @@ export const Widget = ({
 
 	return (
 		<code>
-			Obsidian Widgets: Wrong Settings. <br /> Available widgets: "clock",
-			"quote", "countdown"
+			Widgets: Wrong settings. <br /> Available widgets: "clock", "quote",
+			"countdown"
 		</code>
 	);
 };

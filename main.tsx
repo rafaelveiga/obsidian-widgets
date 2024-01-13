@@ -8,7 +8,7 @@ export default class ObsidianWidgets extends Plugin {
 	async onload() {
 		this.addCommand({
 			id: "add-widget",
-			name: "Add Widget",
+			name: "Add widget",
 			editorCallback: (editor: Editor, view: MarkdownView) => {
 				new ObsidianWidgetsCommandModal(this.app, editor).open();
 			},
@@ -22,7 +22,7 @@ export default class ObsidianWidgets extends Plugin {
 				new ObsidianWidgetsCommandModal(this.app, editor).open();
 			} else {
 				new Notice(
-					"Obsidian Widgets: No cursor placement found. Please place your cursor in your note where you like the widget to be inserted."
+					"Widgets: No cursor placement found. Please place your cursor in your note where you like the widget to be inserted."
 				);
 			}
 		});
