@@ -74,6 +74,12 @@ to: New Year! 🎉
 ```
 ````
 
+## Customizing your widgets
+
+We currently do not support and don't plan to support customizing styles and colors of each widget via options in the widgets code block. Each widget is set to respect your theme's colors. That does not mean you can further customize the look of your widgets to your liking via CSS Snippets.
+
+If you want to customize your widgets, please follow the [guide in our wiki](https://github.com/rafaelveiga/obsidian-widgets/wiki/Customizing-your-widgets-colors-styles)
+
 ## Command Pallete
 
 Obsidian Widgets also comes with a handy command on the command pallete (Ctrl+P) to add widgets on the fly
