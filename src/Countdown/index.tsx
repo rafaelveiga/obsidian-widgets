@@ -2,19 +2,14 @@ import React, { useEffect, useState } from "react";
 import { moment } from "obsidian";
 
 const Countdown = ({ settings: { date, to } }: CountdownProps) => {
-	const [days, setDays] = useState(0);
-	const [hours, setHours] = useState(0);
-	const [minutes, setMinutes] = useState(0);
-	const [seconds, setSeconds] = useState(0);
+	const [days, setDays] = useState("");
+	const [hours, setHours] = useState("");
+	const [minutes, setMinutes] = useState("");
+	const [seconds, setSeconds] = useState("");
 	const [invalidDate, setInvalidDate] = useState<string | null>(null);
 
 	useEffect(() => {
 		const endTime = moment(`${date}`);
-
-		if (moment().isAfter(endTime, "minute")) {
-			setInvalidDate("Completed! 🎉");
-			return;
-		}
 
 		if (!endTime.isValid()) {
 			setInvalidDate("Invalid Date");
@@ -22,19 +17,18 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 		}
 		const clockInterval = setInterval(() => {
 			const currentTime = moment();
-			const endOfCurrentDay = moment().endOf("day");
-			const endOfCurrentHour = moment().endOf("hour");
-			const endOfCurrentMinute = moment().endOf("minute");
 
-			const daysDiff = endTime.diff(currentTime, "days");
-			const hoursDiff = currentTime.diff(endOfCurrentDay, "hours");
-			const minutesDiff = currentTime.diff(endOfCurrentHour, "minutes");
-			const secondsDiff = currentTime.diff(endOfCurrentMinute, "seconds");
+			const duration = moment.duration(endTime.diff(currentTime));
 
-			setDays(daysDiff);
-			setHours(-hoursDiff);
-			setMinutes(-minutesDiff);
-			setSeconds(-secondsDiff);
+			if (currentTime.isAfter(endTime, "second")) {
+				setInvalidDate("Completed! 🎉");
+				return;
+			}
+
+			setDays(duration.days().toFixed(0));
+			setHours(duration.hours().toFixed(0));
+			setMinutes(duration.minutes().toFixed(0));
+			setSeconds(duration.seconds().toFixed(0));
 		}, 1000);
 
 		() => {
