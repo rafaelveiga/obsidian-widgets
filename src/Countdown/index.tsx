@@ -6,13 +6,18 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 	const [hours, setHours] = useState(0);
 	const [minutes, setMinutes] = useState(0);
 	const [seconds, setSeconds] = useState(0);
-	const [invalidDate, setInvalidDate] = useState(false);
+	const [invalidDate, setInvalidDate] = useState<string | null>(null);
 
 	useEffect(() => {
 		const endTime = moment(`${date}`);
 
+		if (moment().isAfter(endTime, "minute")) {
+			setInvalidDate("Completed! 🎉");
+			return;
+		}
+
 		if (!endTime.isValid()) {
-			setInvalidDate(true);
+			setInvalidDate("Invalid Date");
 			return;
 		}
 		const clockInterval = setInterval(() => {
@@ -39,11 +44,14 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 
 	if (invalidDate) {
 		return (
-			<div className="Countdown_Container">
-				<div className="Countdown_Item">
-					<h3>Invalid Date</h3>
+			<>
+				<div className="Countdown_Container">
+					<div className="Countdown_Item">
+						<h3>{invalidDate}</h3>
+					</div>
 				</div>
-			</div>
+				<div className="Countdown_To">{to}</div>
+			</>
 		);
 	}
 
