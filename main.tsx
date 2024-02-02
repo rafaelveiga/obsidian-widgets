@@ -35,7 +35,7 @@ export default class ObsidianWidgets extends Plugin {
 				source
 					.split("\n")
 					.map((option: string) =>
-						option.split(":").map((option) => option.trim())
+						option.split(/:(.*)/).map((option) => option.trim())
 					)
 					.forEach((optionSet) => {
 						// @ts-ignore
