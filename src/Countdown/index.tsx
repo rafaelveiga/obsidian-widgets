@@ -10,31 +10,33 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 
 	useEffect(() => {
 		const endTime = moment(`${date}`);
-
+	  
 		if (!endTime.isValid()) {
-			setInvalidDate("Invalid Date");
-			return;
+		  setInvalidDate("Invalid Date");
+		  return;
 		}
+	  
 		const clockInterval = setInterval(() => {
-			const currentTime = moment();
-
-			const duration = moment.duration(endTime.diff(currentTime));
-
-			if (currentTime.isAfter(endTime, "second")) {
-				setInvalidDate("Completed! 🎉");
-				return;
-			}
-
-			setDays(duration.days().toFixed(0));
-			setHours(duration.hours().toFixed(0));
-			setMinutes(duration.minutes().toFixed(0));
-			setSeconds(duration.seconds().toFixed(0));
+		  const currentTime = moment();
+		  const diffInSeconds = endTime.diff(currentTime, "seconds");
+	  
+		  if (diffInSeconds < 0) {
+			setInvalidDate("Completed! 🎉");
+			return;
+		  }
+	  
+		  const days = Math.floor(diffInSeconds / 86400);
+		  const hours = Math.floor((diffInSeconds % 86400) / 3600);
+		  const minutes = Math.floor((diffInSeconds % 3600) / 60);
+		  const seconds = Math.floor(diffInSeconds % 60);
+	  
+		  setCountdown({ days, hours, minutes, seconds });
 		}, 1000);
-
-		() => {
-			clearInterval(clockInterval);
+	  
+		return () => {
+		  clearInterval(clockInterval);
 		};
-	}, []);
+	  }, [date]);
 
 	if (invalidDate) {
 		return (
@@ -53,33 +55,38 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 		<>
 			<div className="Countdown_Container">
 				<div className="Countdown_Item">
-					<h3>{days}</h3>
+					<h3>{countdown.days}</h3>
 					<small>days</small>
 				</div>
 				<div className="Countdown_Item">
-					<h3>{hours}</h3>
+					<h3>{countdown.hours}</h3>
 					<small>hours</small>
 				</div>
 				<div className="Countdown_Item">
-					<h3>{minutes}</h3>
+					<h3>{countdown.minutes}</h3>
 					<small>minutes</small>
 				</div>
 				<div className="Countdown_Item">
-					<h3>{seconds}</h3>
+					<h3>{countdown.seconds}</h3>
 					<small>seconds</small>
 				</div>
 			</div>
 			<div className="Countdown_To">{to}</div>
 		</>
 	);
-};
 
-export default Countdown;
+	export default Countdown;
 
-export interface CountdownProps {
-	settings: {
-		type: "countdown";
-		date: string;
-		to: string;
-	};
-}
+	export interface CountdownProps {
+		settings: {
+			type: "countdown";
+			date: string;
+			to: string;
+		};
+		countdown: {
+			days: number;
+			hours: number;
+			minutes: number;
+			seconds: number;
+		};
+	}
