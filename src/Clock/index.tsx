@@ -31,8 +31,6 @@ const Clock = () => {
 
 export default Clock;
 
-export interface ClockProps {
-	settings: {
-		type: "clock";
-	};
+export interface ClockSettings {
+	type: "clock";
 }

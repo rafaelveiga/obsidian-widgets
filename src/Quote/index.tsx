@@ -12,9 +12,11 @@ const Quote = ({ settings: { quote, author } }: QuoteProps) => {
 export default Quote;
 
 export interface QuoteProps {
-	settings: {
-		type: "quote";
-		quote: string;
-		author: string;
-	};
+	settings: QuoteSettings;
+}
+
+export interface QuoteSettings {
+	type: "quote";
+	quote: string;
+	author: string;
 }
