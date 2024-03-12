@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { moment } from "obsidian";
 
 const Countdown = ({ settings: { date, to } }: CountdownProps) => {
-	const [days, setDays] = useState("");
-	const [hours, setHours] = useState("");
-	const [minutes, setMinutes] = useState("");
-	const [seconds, setSeconds] = useState("");
+	const [countdown, setCountdown] = useState<CountdownConfig>({
+		days: 0,
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
+	});
 	const [invalidDate, setInvalidDate] = useState<string | null>(null);
 
 	useEffect(() => {
@@ -15,26 +17,28 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 			setInvalidDate("Invalid Date");
 			return;
 		}
+
 		const clockInterval = setInterval(() => {
 			const currentTime = moment();
+			const diffInSeconds = endTime.diff(currentTime, "seconds");
 
-			const duration = moment.duration(endTime.diff(currentTime));
-
-			if (currentTime.isAfter(endTime, "second")) {
+			if (diffInSeconds < 0) {
 				setInvalidDate("Completed! 🎉");
 				return;
 			}
 
-			setDays(duration.days().toFixed(0));
-			setHours(duration.hours().toFixed(0));
-			setMinutes(duration.minutes().toFixed(0));
-			setSeconds(duration.seconds().toFixed(0));
+			const days = Math.floor(diffInSeconds / 86400);
+			const hours = Math.floor((diffInSeconds % 86400) / 3600);
+			const minutes = Math.floor((diffInSeconds % 3600) / 60);
+			const seconds = Math.floor(diffInSeconds % 60);
+
+			setCountdown({ days, hours, minutes, seconds });
 		}, 1000);
 
-		() => {
+		return () => {
 			clearInterval(clockInterval);
 		};
-	}, []);
+	}, [date]);
 
 	if (invalidDate) {
 		return (
@@ -53,19 +57,19 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 		<>
 			<div className="Countdown_Container">
 				<div className="Countdown_Item">
-					<h3>{days}</h3>
+					<h3>{countdown.days}</h3>
 					<small>days</small>
 				</div>
 				<div className="Countdown_Item">
-					<h3>{hours}</h3>
+					<h3>{countdown.hours}</h3>
 					<small>hours</small>
 				</div>
 				<div className="Countdown_Item">
-					<h3>{minutes}</h3>
+					<h3>{countdown.minutes}</h3>
 					<small>minutes</small>
 				</div>
 				<div className="Countdown_Item">
-					<h3>{seconds}</h3>
+					<h3>{countdown.seconds}</h3>
 					<small>seconds</small>
 				</div>
 			</div>
@@ -82,4 +86,11 @@ export interface CountdownProps {
 		date: string;
 		to: string;
 	};
+}
+
+interface CountdownConfig {
+	days: number;
+	hours: number;
+	minutes: number;
+	seconds: number;
 }
