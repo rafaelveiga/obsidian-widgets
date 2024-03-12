@@ -3,9 +3,9 @@ import Clock, { ClockSettings } from "./Clock";
 import Countdown, { CountdownSettings } from "./Countdown";
 import Quote, { QuoteSettings } from "./Quote";
 import NoteNavigator, { NoteNavigatorSettings } from "./NoteNavigator";
-import { Vault } from "obsidian";
+import { App } from "obsidian";
 
-export const Widget = ({ settings, vault }: WidgetProps) => {
+export const Widget = ({ settings, app }: WidgetProps) => {
 	if (settings.type === "clock") {
 		return <Clock />;
 	}
@@ -19,7 +19,7 @@ export const Widget = ({ settings, vault }: WidgetProps) => {
 	}
 
 	if (settings.type === "navigator") {
-		return <NoteNavigator />;
+		return <NoteNavigator app={app} />;
 	}
 
 	return (
@@ -31,7 +31,7 @@ export const Widget = ({ settings, vault }: WidgetProps) => {
 };
 
 interface WidgetProps {
-	vault: Vault;
+	app: App;
 	settings:
 		| ClockSettings
 		| CountdownSettings

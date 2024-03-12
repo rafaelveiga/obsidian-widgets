@@ -27,8 +27,6 @@ export default class ObsidianWidgets extends Plugin {
 			}
 		});
 
-		const { vault } = this.app;
-
 		this.registerMarkdownCodeBlockProcessor(
 			"widgets",
 			(source, el, ctx) => {
@@ -47,7 +45,7 @@ export default class ObsidianWidgets extends Plugin {
 				const root = createRoot(el);
 
 				// @ts-ignore
-				root.render(<Widget settings={options} vault={vault} />);
+				root.render(<Widget settings={options} app={this.app} />);
 			}
 		);
 	}
