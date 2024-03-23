@@ -12,7 +12,6 @@ const NoteNavigator = ({ app }: NoteNavigatorProps) => {
 			</div>
 		);
 
-	const openFileDate = moment(openFile.basename).format("YYYY-MM-DD");
 	const previousDay = moment(openFile.basename)
 		.subtract(1, "days")
 		.format("YYYY-MM-DD");
@@ -20,13 +19,22 @@ const NoteNavigator = ({ app }: NoteNavigatorProps) => {
 		.add(1, "days")
 		.format("YYYY-MM-DD");
 
-	console.log(openFileDate, previousDay, nextDay);
+	if (previousDay === "Invalid date" || nextDay === "Invalid date") {
+		return (
+			<div className="NoteNavigator_Container">
+				<strong>
+					Invalid file to add navigation to. Please create this widget
+					in a daily note
+				</strong>
+			</div>
+		);
+	}
 
 	return (
 		<div className="NoteNavigator_Container">
-			<a href="obsidian://open?file=file">⬅️ {previousDay}</a>
+			<a href={`obsidian://open?file=${previousDay}`}>⬅️ {previousDay}</a>
 			<strong>{openFile.basename}</strong>
-			<a href="#">{nextDay} ➡️</a>
+			<a href={`obsidian://open?file=${nextDay}`}>{nextDay} ➡️</a>
 		</div>
 	);
 };
