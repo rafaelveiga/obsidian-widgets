@@ -27,7 +27,7 @@ export const Widget = ({ settings, helperFunctions }: WidgetProps) => {
 	return (
 		<code>
 			Widgets: Wrong settings. <br /> Available widgets: "clock", "quote",
-			"countdown"
+			"countdown", "counter"
 		</code>
 	);
 };

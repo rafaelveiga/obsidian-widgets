@@ -87,6 +87,10 @@ to: New Year! 🎉
 
 `text`: the text label below the counter
 
+#### Notice
+
+The counter widget is supported only once by note. If you add more than one counter widget to a note, they will share the same count. To sync the count between devices, make sure your `.obsidian/plugins` folder is synced between devices. This is where Obsidian stores the data for this plugin
+
 #### Example
 
 ````
