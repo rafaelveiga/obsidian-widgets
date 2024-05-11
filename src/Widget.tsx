@@ -7,7 +7,7 @@ export const Widget = ({
 	settings,
 }: QuoteProps | CountdownProps | ClockProps) => {
 	if (settings.type === "clock") {
-		return <Clock />;
+		return <Clock settings={settings} />;
 	}
 
 	if (settings.type === "quote") {
