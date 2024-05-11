@@ -8,6 +8,13 @@ const Counter = ({ settings, helperFunctions }: CounterProps) => {
 		helperFunctions.readFromDataJson().then((data: DataJson) => {
 			const { path } = helperFunctions.getCurrentOpenFile();
 
+			if (!data[path]) {
+				writeToDataJson(0);
+				setCount(0);
+
+				return;
+			}
+
 			setCount(data[path]);
 		});
 	}, []);
@@ -17,11 +24,7 @@ const Counter = ({ settings, helperFunctions }: CounterProps) => {
 
 		setCount(currentCount + 1);
 
-		const { path } = helperFunctions.getCurrentOpenFile();
-
-		helperFunctions.writeToDataJson({
-			[path]: currentCount + 1,
-		});
+		writeToDataJson(currentCount + 1);
 	};
 
 	const decrement = () => {
@@ -29,20 +32,24 @@ const Counter = ({ settings, helperFunctions }: CounterProps) => {
 
 		setCount(currentCount - 1);
 
-		const { path } = helperFunctions.getCurrentOpenFile();
-
-		helperFunctions.writeToDataJson({
-			[path]: currentCount - 1,
-		});
+		writeToDataJson(currentCount - 1);
 	};
 
 	const reset = () => {
 		setCount(0);
 
-		const { path } = helperFunctions.getCurrentOpenFile();
+		writeToDataJson(0);
+	};
 
-		helperFunctions.writeToDataJson({
-			[path]: 0,
+	const writeToDataJson = (value: number) => {
+		helperFunctions.readFromDataJson().then((data: DataJson) => {
+			const { path } = helperFunctions.getCurrentOpenFile();
+
+			console.log(data);
+			helperFunctions.writeToDataJson({
+				...data,
+				[path]: value,
+			});
 		});
 	};
 
@@ -69,7 +76,7 @@ interface CounterProps {
 	helperFunctions: HelperFunctions;
 }
 
-interface DataJson {
+export interface DataJson {
 	[path: string]: number;
 }
 
