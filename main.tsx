@@ -45,9 +45,26 @@ export default class ObsidianWidgets extends Plugin {
 				const root = createRoot(el);
 
 				// @ts-ignore
-				root.render(<Widget settings={options} />);
+				root.render(
+					<Widget
+						settings={options}
+						helperFunctions={{
+							writeToDataJson: this.writeToDataJson.bind(this),
+							readFromDataJson: this.readFromDataJson.bind(this),
+						}}
+					/>
+				);
 			}
 		);
 	}
+
 	async onunload() {}
+
+	writeToDataJson(data: any) {
+		this.saveData(data);
+	}
+
+	readFromDataJson() {
+		return this.loadData();
+	}
 }
