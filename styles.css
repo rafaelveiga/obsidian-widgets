@@ -29,6 +29,19 @@ If your plugin does not need CSS, delete this file.
   color: var(--text-muted);
 }
 
+.Clock__time-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.Clock__am-pm {
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--text-muted);
+}
+
 /*
   Quote Widget
 */
