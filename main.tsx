@@ -51,6 +51,8 @@ export default class ObsidianWidgets extends Plugin {
 						helperFunctions={{
 							writeToDataJson: this.writeToDataJson.bind(this),
 							readFromDataJson: this.readFromDataJson.bind(this),
+							getCurrentOpenFile:
+								this.getCurrentOpenFile.bind(this),
 						}}
 					/>
 				);
@@ -66,5 +68,9 @@ export default class ObsidianWidgets extends Plugin {
 
 	readFromDataJson() {
 		return this.loadData();
+	}
+
+	getCurrentOpenFile() {
+		return this.app.workspace.getActiveFile();
 	}
 }

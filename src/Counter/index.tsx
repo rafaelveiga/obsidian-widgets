@@ -1,36 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HelperFunctions } from "src/types/HelperFunctions";
 
 const Counter = ({ settings, helperFunctions }: CounterProps) => {
 	const [count, setCount] = useState(0);
 
+	useEffect(() => {
+		helperFunctions.readFromDataJson().then((data: DataJson) => {
+			const { path } = helperFunctions.getCurrentOpenFile();
+
+			setCount(data[path]);
+		});
+	}, []);
+
 	const increment = () => {
-		setCount(count + 1);
+		const currentCount = count;
+
+		setCount(currentCount + 1);
+
+		const { path } = helperFunctions.getCurrentOpenFile();
+
 		helperFunctions.writeToDataJson({
-			count: count,
+			[path]: currentCount + 1,
 		});
 	};
 
 	const decrement = () => {
-		setCount(count - 1);
+		const currentCount = count;
+
+		setCount(currentCount - 1);
+
+		const { path } = helperFunctions.getCurrentOpenFile();
+
+		helperFunctions.writeToDataJson({
+			[path]: currentCount - 1,
+		});
 	};
 
 	return (
-		<div>
-			<button onClick={increment}>+</button>
-			<button onClick={decrement}>-</button>
-			{count}
+		<div className="Counter__container">
+			<div className="Counter__counter">
+				<button onClick={decrement}>-</button>
+				{count}
+				<button onClick={increment}>+</button>
+			</div>
+			<div className="Counter__text">{settings.text}</div>
 		</div>
 	);
 };
 
 export interface CounterSettings {
 	type: "counter";
+	text: string;
 }
 
 interface CounterProps {
 	settings: CounterSettings;
 	helperFunctions: HelperFunctions;
+}
+
+interface DataJson {
+	[path: string]: number;
 }
 
 export default Counter;
