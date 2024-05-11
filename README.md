@@ -77,6 +77,29 @@ to: New Year! 🎉
 ```
 ````
 
+## Counter
+
+![Counter](public/counter.png)
+
+#### Configuration Body:
+
+`type`: counter
+
+`text`: the text label below the counter
+
+#### Notice
+
+The counter widget is supported only once by note. If you add more than one counter widget to a note, they will share the same count. To sync the count between devices, make sure your `.obsidian/plugins` folder is synced between devices. This is where Obsidian stores the data for this plugin
+
+#### Example
+
+````
+```widgets
+type: counter
+text: Push-ups
+```
+````
+
 ## Customizing your widgets
 
 We currently do not support and don't plan to support customizing styles and colors of each widget via options in the widgets code block. Each widget is set to respect your theme's colors. That does not mean you can further customize the look of your widgets to your liking via CSS Snippets.

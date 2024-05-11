@@ -28,3 +28,9 @@ To customize each independent widget, you can follow the CSS Classes outlined be
     -   `.Countdown_Item h3` to alter the time value type
     -   `.Countdown_Item small` to alther the "days", "hours", "minutes", "seconds" text of each box
 -   `.Countdown_To`: The text that shows what the countdown is counting down to
+
+## Counter
+
+-   `.Counter_Container`: The container for the counter
+-   `.Counter__counter`: The counter itself, containing the number and the buttons
+-   `.Counter__text`: The text that shows what the counter is counting

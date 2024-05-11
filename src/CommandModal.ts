@@ -20,6 +20,10 @@ const ALL_WIDGETS = [
 		markdown:
 			"```widgets\ntype: quote\nquote: Lorem ipsum dolor sit amet\nauthor: Lorem Ipsum\n```\n",
 	},
+	{
+		title: "Counter",
+		markdown: "```widgets\ntype: counter\ntext: Lorem ipsum\n```\n",
+	},
 ];
 
 export default class WidgetsCommandModal extends FuzzySuggestModal<Widget> {

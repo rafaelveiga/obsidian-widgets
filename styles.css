@@ -101,3 +101,30 @@ If your plugin does not need CSS, delete this file.
 	margin-top: 12px;
 	color: var(--text-muted);
 }
+
+/*
+  Counter Widget
+*/
+.Counter__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.Counter__counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.Counter__text {
+  color: var(--text-muted);
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+}

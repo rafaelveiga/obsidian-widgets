@@ -3,6 +3,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Widget } from "./src/Widget";
 import ObsidianWidgetsCommandModal from "src/CommandModal";
+import { DataJson } from "src/Counter";
 
 export default class ObsidianWidgets extends Plugin {
 	async onload() {
@@ -30,7 +31,8 @@ export default class ObsidianWidgets extends Plugin {
 		this.registerMarkdownCodeBlockProcessor(
 			"widgets",
 			(source, el, ctx) => {
-				const options = {};
+				// @ts-ignore
+				const options = {} as any;
 
 				source
 					.split("\n")
@@ -45,9 +47,32 @@ export default class ObsidianWidgets extends Plugin {
 				const root = createRoot(el);
 
 				// @ts-ignore
-				root.render(<Widget settings={options} />);
+				root.render(
+					<Widget
+						settings={options}
+						helperFunctions={{
+							writeToDataJson: this.writeToDataJson.bind(this),
+							readFromDataJson: this.readFromDataJson.bind(this),
+							getCurrentOpenFile:
+								this.getCurrentOpenFile.bind(this),
+						}}
+					/>
+				);
 			}
 		);
 	}
+
 	async onunload() {}
+
+	writeToDataJson(data: DataJson) {
+		this.saveData(data);
+	}
+
+	readFromDataJson() {
+		return this.loadData();
+	}
+
+	getCurrentOpenFile() {
+		return this.app.workspace.getActiveFile();
+	}
 }

@@ -80,12 +80,14 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 
 export default Countdown;
 
-export interface CountdownProps {
-	settings: {
-		type: "countdown";
-		date: string;
-		to: string;
-	};
+export interface CountdownSettings {
+	type: "countdown";
+	date: string;
+	to: string;
+}
+
+interface CountdownProps {
+	settings: CountdownSettings;
 }
 
 interface CountdownConfig {

@@ -1,11 +1,11 @@
 import * as React from "react";
-import Clock, { ClockProps } from "./Clock";
-import Countdown, { CountdownProps } from "./Countdown";
-import Quote, { QuoteProps } from "./Quote";
+import Clock, { ClockSettings } from "./Clock";
+import Countdown, { CountdownSettings } from "./Countdown";
+import Quote, { QuoteSettings } from "./Quote";
+import Counter, { CounterSettings } from "./Counter";
+import { HelperFunctions } from "./types/HelperFunctions";
 
-export const Widget = ({
-	settings,
-}: QuoteProps | CountdownProps | ClockProps) => {
+export const Widget = ({ settings, helperFunctions }: WidgetProps) => {
 	if (settings.type === "clock") {
 		return <Clock settings={settings} />;
 	}
@@ -18,10 +18,25 @@ export const Widget = ({
 		return <Countdown settings={settings} />;
 	}
 
+	if (settings.type === "counter") {
+		return (
+			<Counter settings={settings} helperFunctions={helperFunctions} />
+		);
+	}
+
 	return (
 		<code>
 			Widgets: Wrong settings. <br /> Available widgets: "clock", "quote",
-			"countdown"
+			"countdown", "counter"
 		</code>
 	);
 };
+
+export interface WidgetProps {
+	settings:
+		| QuoteSettings
+		| CountdownSettings
+		| ClockSettings
+		| CounterSettings;
+	helperFunctions: HelperFunctions;
+}

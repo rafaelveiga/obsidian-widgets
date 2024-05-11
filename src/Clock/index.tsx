@@ -41,11 +41,13 @@ const Clock = ({ settings }: ClockProps) => {
 
 export default Clock;
 
-export interface ClockProps {
-	settings: {
-		type: "clock";
-		format: "12hr" | "24hr";
-	};
+export interface ClockSettings {
+	type: "clock";
+	format: "12hr" | "24hr";
+}
+
+interface ClockProps {
+	settings: ClockSettings;
 }
 
 Clock.defaultProps = {
