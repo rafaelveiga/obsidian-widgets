@@ -30,7 +30,7 @@ export default class ObsidianWidgets extends Plugin {
 		this.registerMarkdownCodeBlockProcessor(
 			"widgets",
 			(source, el, ctx) => {
-				const options = {};
+				const options = {} as any;
 
 				source
 					.split("\n")
