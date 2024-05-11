@@ -3,6 +3,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Widget } from "./src/Widget";
 import ObsidianWidgetsCommandModal from "src/CommandModal";
+import { DataJson } from "src/Counter";
 
 export default class ObsidianWidgets extends Plugin {
 	async onload() {
@@ -30,6 +31,7 @@ export default class ObsidianWidgets extends Plugin {
 		this.registerMarkdownCodeBlockProcessor(
 			"widgets",
 			(source, el, ctx) => {
+				// @ts-ignore
 				const options = {} as any;
 
 				source
@@ -62,7 +64,7 @@ export default class ObsidianWidgets extends Plugin {
 
 	async onunload() {}
 
-	writeToDataJson(data: any) {
+	writeToDataJson(data: DataJson) {
 		this.saveData(data);
 	}
 
