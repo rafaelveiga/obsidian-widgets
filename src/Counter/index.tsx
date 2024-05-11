@@ -36,12 +36,23 @@ const Counter = ({ settings, helperFunctions }: CounterProps) => {
 		});
 	};
 
+	const reset = () => {
+		setCount(0);
+
+		const { path } = helperFunctions.getCurrentOpenFile();
+
+		helperFunctions.writeToDataJson({
+			[path]: 0,
+		});
+	};
+
 	return (
 		<div className="Counter__container">
 			<div className="Counter__counter">
 				<button onClick={decrement}>-</button>
 				{count}
 				<button onClick={increment}>+</button>
+				<button onClick={reset}>Reset</button>
 			</div>
 			<div className="Counter__text">{settings.text}</div>
 		</div>

@@ -111,6 +111,8 @@ If your plugin does not need CSS, delete this file.
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .Counter__counter {
