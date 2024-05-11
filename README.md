@@ -22,11 +22,14 @@ Currently, the available widgets are:
 
 `type`: clock
 
+`format`: the time format you want to display on the clock. Supports "12hr", "24hr"
+
 #### Example
 
 ````
 ```widgets
 type: clock
+format: "12hr" | "24hr"
 ```
 ````
 
