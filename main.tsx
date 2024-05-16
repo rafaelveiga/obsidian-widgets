@@ -3,9 +3,9 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Widget } from "./src/Widget";
 import ObsidianWidgetsCommandModal from "src/CommandModal";
-import { DataJson } from "src/Counter";
 import { VIEW_TYPE, WidgetView } from "src/WidgetView";
 import { WidgetSettings } from "src/types/Widgets";
+import { DataJson, HelperFunctions } from "src/types/HelperFunctions";
 
 export default class ObsidianWidgets extends Plugin {
 	async onload() {
@@ -19,24 +19,24 @@ export default class ObsidianWidgets extends Plugin {
 			},
 		});
 
+		this.addCommand({
+			id: "add-widget-view",
+			name: "Open widget view",
+			editorCallback: () => {
+				this.activateView();
+			},
+		});
+
 		// Register view
 		// =====================
 		this.registerView(
 			VIEW_TYPE,
 			(leaf: WorkspaceLeaf) =>
-				new WidgetView(leaf, {
-					writeToDataJson: this.writeToDataJson.bind(this),
-					readFromDataJson: this.readFromDataJson.bind(this),
-					getCurrentOpenFile: this.getCurrentOpenFile.bind(this),
-				})
+				new WidgetView(leaf, this.getHelperFunctions())
 		);
 
 		// Adds sidebar icon
 		// =====================
-		this.addRibbonIcon("cuboid", "Activate view", () => {
-			this.activateView();
-		});
-
 		this.addRibbonIcon("cuboid", "Add widget", () => {
 			const editor =
 				this.app.workspace.getActiveViewOfType(MarkdownView)?.editor;
@@ -74,12 +74,7 @@ export default class ObsidianWidgets extends Plugin {
 				root.render(
 					<Widget
 						settings={options}
-						helperFunctions={{
-							writeToDataJson: this.writeToDataJson.bind(this),
-							readFromDataJson: this.readFromDataJson.bind(this),
-							getCurrentOpenFile:
-								this.getCurrentOpenFile.bind(this),
-						}}
+						helperFunctions={this.getHelperFunctions()}
 						leafId=""
 					/>
 				);
@@ -104,11 +99,19 @@ export default class ObsidianWidgets extends Plugin {
 		this.saveData(data);
 	}
 
-	readFromDataJson() {
+	readFromDataJson(): Promise<DataJson> {
 		return this.loadData();
 	}
 
 	getCurrentOpenFile() {
 		return this.app.workspace.getActiveFile();
+	}
+
+	getHelperFunctions(): HelperFunctions {
+		return {
+			writeToDataJson: this.writeToDataJson.bind(this),
+			readFromDataJson: this.readFromDataJson.bind(this),
+			getCurrentOpenFile: this.getCurrentOpenFile.bind(this),
+		};
 	}
 }
