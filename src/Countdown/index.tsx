@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { moment } from "obsidian";
+import { WidgetType } from "src/types/WidgetTypes";
 
 const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 	const [countdown, setCountdown] = useState<CountdownConfig>({
@@ -81,7 +82,7 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 export default Countdown;
 
 export interface CountdownSettings {
-	type: "countdown";
+	type: WidgetType;
 	date: string;
 	to: string;
 }

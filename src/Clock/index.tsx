@@ -1,5 +1,6 @@
 import * as React from "react";
 import { moment } from "obsidian";
+import { WidgetType } from "src/types/WidgetTypes";
 
 const Clock = ({ settings }: ClockProps) => {
 	const [time, setTime] = React.useState(moment().format("HH:mm:ss"));
@@ -42,7 +43,7 @@ const Clock = ({ settings }: ClockProps) => {
 export default Clock;
 
 export interface ClockSettings {
-	type: "clock";
+	type: WidgetType;
 	format: "12hr" | "24hr";
 }
 

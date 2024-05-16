@@ -1,30 +1,10 @@
 import { App, Editor, FuzzySuggestModal, Notice } from "obsidian";
+import { ALL_WIDGETS } from "./util/constants";
 
 interface Widget {
 	title: string;
 	markdown: string;
 }
-
-const ALL_WIDGETS = [
-	{
-		title: "Clock",
-		markdown: "```widgets\ntype: clock\n```\n",
-	},
-	{
-		title: "Countdown",
-		markdown:
-			"```widgets\ntype: countdown\ndate: YYYY-MM-DD HH:MM:SS\nto:\n```\n",
-	},
-	{
-		title: "Quote",
-		markdown:
-			"```widgets\ntype: quote\nquote: Lorem ipsum dolor sit amet\nauthor: Lorem Ipsum\n```\n",
-	},
-	{
-		title: "Counter",
-		markdown: "```widgets\ntype: counter\ntext: Lorem ipsum\n```\n",
-	},
-];
 
 export default class WidgetsCommandModal extends FuzzySuggestModal<Widget> {
 	editor: Editor;

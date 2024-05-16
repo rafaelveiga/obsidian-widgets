@@ -106,6 +106,12 @@ We currently do not support and don't plan to support customizing styles and col
 
 If you want to customize your widgets, please follow the [guide](STYLING.md)
 
+## Widget View
+
+Obsidian Widgets comes with a command to add a Widget as a view to your workspace. This is useful if you want to have a widget always visible on your workspace. To use the command, open the Command Pallete (Ctrl + P) and select "Open widget view"
+
+![Widget View](public/widget-view.png)
+
 ## Command Pallete
 
 Obsidian Widgets also comes with a handy command on the command pallete (Ctrl+P) to add widgets on the fly

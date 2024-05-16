@@ -1,4 +1,5 @@
 import * as React from "react";
+import { WidgetType } from "src/types/WidgetTypes";
 
 const Quote = ({ settings: { quote, author } }: QuoteProps) => {
 	return (
@@ -12,7 +13,7 @@ const Quote = ({ settings: { quote, author } }: QuoteProps) => {
 export default Quote;
 
 export interface QuoteSettings {
-	type: "quote";
+	type: WidgetType;
 	quote: string;
 	author: string;
 }

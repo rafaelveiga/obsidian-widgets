@@ -4,23 +4,28 @@ import Countdown, { CountdownSettings } from "./Countdown";
 import Quote, { QuoteSettings } from "./Quote";
 import Counter, { CounterSettings } from "./Counter";
 import { HelperFunctions } from "./types/HelperFunctions";
+import { WidgetSettings } from "./types/Widgets";
 
-export const Widget = ({ settings, helperFunctions }: WidgetProps) => {
+export const Widget = ({ settings, helperFunctions, leafId }: WidgetProps) => {
 	if (settings.type === "clock") {
-		return <Clock settings={settings} />;
+		return <Clock settings={settings as ClockSettings} />;
 	}
 
 	if (settings.type === "quote") {
-		return <Quote settings={settings} />;
+		return <Quote settings={settings as QuoteSettings} />;
 	}
 
 	if (settings.type === "countdown") {
-		return <Countdown settings={settings} />;
+		return <Countdown settings={settings as CountdownSettings} />;
 	}
 
 	if (settings.type === "counter") {
 		return (
-			<Counter settings={settings} helperFunctions={helperFunctions} />
+			<Counter
+				settings={settings as CounterSettings}
+				helperFunctions={helperFunctions}
+				leafId={leafId}
+			/>
 		);
 	}
 
@@ -33,10 +38,7 @@ export const Widget = ({ settings, helperFunctions }: WidgetProps) => {
 };
 
 export interface WidgetProps {
-	settings:
-		| QuoteSettings
-		| CountdownSettings
-		| ClockSettings
-		| CounterSettings;
+	settings: WidgetSettings;
 	helperFunctions: HelperFunctions;
+	leafId: string;
 }

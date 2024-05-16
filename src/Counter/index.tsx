@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { HelperFunctions } from "src/types/HelperFunctions";
+import { DataJson, HelperFunctions } from "src/types/HelperFunctions";
+import { WidgetType } from "src/types/Widgets";
 
-const Counter = ({ settings, helperFunctions }: CounterProps) => {
+const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
 	const [count, setCount] = useState(0);
 
 	useEffect(() => {
 		helperFunctions.readFromDataJson().then((data: DataJson) => {
-			const { path } = helperFunctions.getCurrentOpenFile();
+			let path: string;
+
+			if (leafId.length > 0) {
+				path = leafId;
+			} else {
+				const { path: filePath } = helperFunctions.getCurrentOpenFile();
+				path = filePath;
+			}
 
 			if (!data[path]) {
 				writeToDataJson(0);
@@ -43,9 +51,15 @@ const Counter = ({ settings, helperFunctions }: CounterProps) => {
 
 	const writeToDataJson = (value: number) => {
 		helperFunctions.readFromDataJson().then((data: DataJson) => {
-			const { path } = helperFunctions.getCurrentOpenFile();
+			let path: string;
 
-			console.log(data);
+			if (leafId.length > 0) {
+				path = leafId;
+			} else {
+				const { path: filePath } = helperFunctions.getCurrentOpenFile();
+				path = filePath;
+			}
+
 			helperFunctions.writeToDataJson({
 				...data,
 				[path]: value,
@@ -67,17 +81,14 @@ const Counter = ({ settings, helperFunctions }: CounterProps) => {
 };
 
 export interface CounterSettings {
-	type: "counter";
+	type: WidgetType;
 	text: string;
 }
 
 interface CounterProps {
 	settings: CounterSettings;
 	helperFunctions: HelperFunctions;
-}
-
-export interface DataJson {
-	[path: string]: number;
+	leafId: string;
 }
 
 export default Counter;

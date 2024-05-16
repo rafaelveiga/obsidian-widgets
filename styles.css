@@ -128,3 +128,22 @@ If your plugin does not need CSS, delete this file.
   font-size: 12px;
   text-transform: uppercase;
 }
+
+/*
+  Widget config
+*/
+.WidgetConfig__actions {
+  opacity: 0;
+  transition: all 0.2s;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.WidgetConfig__container:hover .WidgetConfig__actions{
+  opacity: 1;
+}
+
+.WidgetConfig__input-group {
+  margin: 10px 0;
+}
