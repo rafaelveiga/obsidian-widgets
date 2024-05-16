@@ -18,14 +18,6 @@ export default class ObsidianWidgets extends Plugin {
 			},
 		});
 
-		this.addCommand({
-			id: "activate-view",
-			name: "Activate view",
-			editorCallback: (editor: Editor, view: MarkdownView) => {
-				this.activateView();
-			},
-		});
-
 		// Register view
 		// =====================
 		this.registerView(
@@ -40,6 +32,10 @@ export default class ObsidianWidgets extends Plugin {
 
 		// Adds sidebar icon
 		// =====================
+		this.addRibbonIcon("cuboid", "Activate view", () => {
+			this.activateView();
+		});
+
 		this.addRibbonIcon("cuboid", "Add widget", () => {
 			const editor =
 				this.app.workspace.getActiveViewOfType(MarkdownView)?.editor;
@@ -94,18 +90,9 @@ export default class ObsidianWidgets extends Plugin {
 	async activateView() {
 		const { workspace } = this.app;
 
-		let leaf: WorkspaceLeaf | null = null;
-		const leaves = workspace.getLeavesOfType(VIEW_TYPE);
+		const leaf: WorkspaceLeaf | null = workspace.getLeftLeaf(true);
 
-		if (leaves.length > 0) {
-			// A leaf with our view already exists, use that
-			leaf = leaves[0];
-		} else {
-			// Our view could not be found in the workspace, create a new leaf
-			// in the right sidebar for it
-			leaf = workspace.getLeftLeaf(true);
-			await leaf.setViewState({ type: VIEW_TYPE, active: true });
-		}
+		await leaf.setViewState({ type: VIEW_TYPE, active: true });
 
 		// "Reveal" the leaf in case it is in a collapsed sidebar
 		workspace.revealLeaf(leaf);
