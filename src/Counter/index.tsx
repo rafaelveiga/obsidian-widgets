@@ -2,12 +2,19 @@ import React, { useEffect, useState } from "react";
 import { HelperFunctions } from "src/types/HelperFunctions";
 import { WidgetType } from "src/types/WidgetTypes";
 
-const Counter = ({ settings, helperFunctions }: CounterProps) => {
+const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
 	const [count, setCount] = useState(0);
 
 	useEffect(() => {
 		helperFunctions.readFromDataJson().then((data: DataJson) => {
-			const { path } = helperFunctions.getCurrentOpenFile();
+			let path: string;
+
+			if (leafId) {
+				path = leafId;
+			} else {
+				const { path: filePath } = helperFunctions.getCurrentOpenFile();
+				path = filePath;
+			}
 
 			if (!data[path]) {
 				writeToDataJson(0);
@@ -44,9 +51,15 @@ const Counter = ({ settings, helperFunctions }: CounterProps) => {
 
 	const writeToDataJson = (value: number) => {
 		helperFunctions.readFromDataJson().then((data: DataJson) => {
-			const { path } = helperFunctions.getCurrentOpenFile();
+			let path: string;
 
-			console.log(data);
+			if (leafId) {
+				path = leafId;
+			} else {
+				const { path: filePath } = helperFunctions.getCurrentOpenFile();
+				path = filePath;
+			}
+
 			helperFunctions.writeToDataJson({
 				...data,
 				[path]: value,
@@ -75,6 +88,7 @@ export interface CounterSettings {
 interface CounterProps {
 	settings: CounterSettings;
 	helperFunctions: HelperFunctions;
+	leafId: string;
 }
 
 export interface DataJson {

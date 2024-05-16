@@ -10,23 +10,34 @@ import { CountdownSettings } from "./Countdown";
 
 export const VIEW_TYPE = "widgets";
 
-export type IWidgetConfigPersistedState =
+export type IWidgetConfigPersistedState = (
 	| ClockSettings
 	| QuoteSettings
 	| CounterSettings
-	| CountdownSettings;
+	| CountdownSettings
+) & {
+	isEditing: boolean;
+};
 
 export class WidgetView extends ItemView {
 	helperFunctions: HelperFunctions;
+	leaf: WorkspaceLeaf;
 
 	widgetConfig: IWidgetConfigPersistedState = {
 		type: "clock",
+		author: "",
+		date: "",
 		format: "24hr",
+		quote: "",
+		text: "",
+		to: "",
+		isEditing: true,
 	};
 
 	constructor(leaf: WorkspaceLeaf, helperFunctions: HelperFunctions) {
 		super(leaf);
 
+		this.leaf = leaf;
 		this.helperFunctions = helperFunctions;
 	}
 
@@ -39,6 +50,10 @@ export class WidgetView extends ItemView {
 	}
 
 	async onOpen(): Promise<void> {
+		this.render();
+	}
+
+	render(): void {
 		const container = this.containerEl.children[1];
 
 		const root = createRoot(container);
@@ -48,6 +63,7 @@ export class WidgetView extends ItemView {
 				setConfig={this.setConfig.bind(this)}
 				getState={this.getState.bind(this)}
 				helperFunctions={this.helperFunctions}
+				leaf={this.leaf}
 			/>
 		);
 	}

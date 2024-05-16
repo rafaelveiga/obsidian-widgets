@@ -5,7 +5,7 @@ import Quote, { QuoteSettings } from "./Quote";
 import Counter, { CounterSettings } from "./Counter";
 import { HelperFunctions } from "./types/HelperFunctions";
 
-export const Widget = ({ settings, helperFunctions }: WidgetProps) => {
+export const Widget = ({ settings, helperFunctions, leafId }: WidgetProps) => {
 	if (settings.type === "clock") {
 		return <Clock settings={settings} />;
 	}
@@ -20,7 +20,11 @@ export const Widget = ({ settings, helperFunctions }: WidgetProps) => {
 
 	if (settings.type === "counter") {
 		return (
-			<Counter settings={settings} helperFunctions={helperFunctions} />
+			<Counter
+				settings={settings}
+				helperFunctions={helperFunctions}
+				leafId={leafId}
+			/>
 		);
 	}
 
@@ -39,4 +43,5 @@ export interface WidgetProps {
 		| ClockSettings
 		| CounterSettings;
 	helperFunctions: HelperFunctions;
+	leafId: string;
 }
