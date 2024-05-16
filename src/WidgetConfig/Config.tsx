@@ -1,6 +1,8 @@
 import React from "react";
 import { ALL_WIDGETS } from "../util/constants";
 import { IWidgetConfigPersistedState } from "src/WidgetView";
+import { WidgetType } from "src/types/WidgetTypes";
+import { QuoteSettings } from "src/Quote";
 
 const Config = ({ setState, state }: IConfigProps) => {
 	return (
@@ -11,7 +13,7 @@ const Config = ({ setState, state }: IConfigProps) => {
 			<select
 				value={state.type}
 				onChange={(ev) => {
-					const type = ev.target.value as string;
+					const type = ev.target.value as WidgetType;
 
 					setState({
 						...state,
@@ -34,7 +36,7 @@ const Config = ({ setState, state }: IConfigProps) => {
 					<br />
 					<input
 						type="text"
-						value={state.quote}
+						value={(state as QuoteSettings).quote}
 						onChange={(ev) => {
 							const quote = ev.target.value;
 
@@ -48,7 +50,7 @@ const Config = ({ setState, state }: IConfigProps) => {
 					<label>Author</label>
 					<input
 						type="text"
-						value={state.author}
+						value={(state as QuoteSettings).author}
 						onChange={(ev) => {
 							const author = ev.target.value;
 

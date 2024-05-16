@@ -10,7 +10,6 @@ import { CountdownSettings } from "./Countdown";
 
 export const VIEW_TYPE = "widgets";
 
-// interface that can implement multiple interfaces
 export type IWidgetConfigPersistedState =
 	| ClockSettings
 	| QuoteSettings

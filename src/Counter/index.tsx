@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HelperFunctions } from "src/types/HelperFunctions";
+import { WidgetType } from "src/types/WidgetTypes";
 
 const Counter = ({ settings, helperFunctions }: CounterProps) => {
 	const [count, setCount] = useState(0);
@@ -67,7 +68,7 @@ const Counter = ({ settings, helperFunctions }: CounterProps) => {
 };
 
 export interface CounterSettings {
-	type: "counter";
+	type: WidgetType;
 	text: string;
 }
 
