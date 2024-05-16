@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HelperFunctions } from "src/types/HelperFunctions";
+import { DataJson, HelperFunctions } from "src/types/HelperFunctions";
 import { WidgetType } from "src/types/Widgets";
 
 const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
@@ -89,10 +89,6 @@ interface CounterProps {
 	settings: CounterSettings;
 	helperFunctions: HelperFunctions;
 	leafId: string;
-}
-
-export interface DataJson {
-	[path: string]: number;
 }
 
 export default Counter;
