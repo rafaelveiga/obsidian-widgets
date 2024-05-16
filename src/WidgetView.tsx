@@ -3,19 +3,11 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import WidgetConfig from "src/WidgetConfig";
 import { HelperFunctions } from "./types/HelperFunctions";
-import { ClockSettings } from "./Clock";
-import { QuoteSettings } from "./Quote";
-import { CounterSettings } from "./Counter";
-import { CountdownSettings } from "./Countdown";
+import { WidgetSettings } from "./types/Widgets";
 
 export const VIEW_TYPE = "widgets";
 
-export type IWidgetConfigPersistedState = (
-	| ClockSettings
-	| QuoteSettings
-	| CounterSettings
-	| CountdownSettings
-) & {
+export type IWidgetConfigPersistedState = WidgetSettings & {
 	isEditing: boolean;
 };
 

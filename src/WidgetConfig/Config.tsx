@@ -1,11 +1,11 @@
 import React from "react";
 import { ALL_WIDGETS } from "../util/constants";
 import { IWidgetConfigPersistedState } from "src/WidgetView";
-import { WidgetType } from "src/types/WidgetTypes";
 import { QuoteSettings } from "src/Quote";
 import { CounterSettings } from "src/Counter";
 import { ClockSettings } from "src/Clock";
 import { CountdownSettings } from "src/Countdown";
+import { WidgetType } from "src/types/Widgets";
 
 const Config = ({ setState, state }: IConfigProps) => {
 	return (

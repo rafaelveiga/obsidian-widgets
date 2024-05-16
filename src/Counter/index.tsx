@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HelperFunctions } from "src/types/HelperFunctions";
-import { WidgetType } from "src/types/WidgetTypes";
+import { WidgetType } from "src/types/Widgets";
 
 const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
 	const [count, setCount] = useState(0);
@@ -9,7 +9,7 @@ const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
 		helperFunctions.readFromDataJson().then((data: DataJson) => {
 			let path: string;
 
-			if (leafId) {
+			if (leafId.length > 0) {
 				path = leafId;
 			} else {
 				const { path: filePath } = helperFunctions.getCurrentOpenFile();
@@ -53,7 +53,7 @@ const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
 		helperFunctions.readFromDataJson().then((data: DataJson) => {
 			let path: string;
 
-			if (leafId) {
+			if (leafId.length > 0) {
 				path = leafId;
 			} else {
 				const { path: filePath } = helperFunctions.getCurrentOpenFile();

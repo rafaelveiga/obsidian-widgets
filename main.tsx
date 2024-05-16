@@ -5,6 +5,7 @@ import { Widget } from "./src/Widget";
 import ObsidianWidgetsCommandModal from "src/CommandModal";
 import { DataJson } from "src/Counter";
 import { VIEW_TYPE, WidgetView } from "src/WidgetView";
+import { WidgetSettings } from "src/types/Widgets";
 
 export default class ObsidianWidgets extends Plugin {
 	async onload() {
@@ -55,7 +56,7 @@ export default class ObsidianWidgets extends Plugin {
 			"widgets",
 			(source, el, ctx) => {
 				// @ts-ignore
-				const options = {} as any;
+				const options = {} as WidgetSettings;
 
 				source
 					.split("\n")
@@ -79,6 +80,7 @@ export default class ObsidianWidgets extends Plugin {
 							getCurrentOpenFile:
 								this.getCurrentOpenFile.bind(this),
 						}}
+						leafId=""
 					/>
 				);
 			}
