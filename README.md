@@ -63,7 +63,7 @@ author: Lorem Ipsum
 
 `type`: countdown
 
-`date`: Must be in the format `YYYY-MM-DD HH:MM:SS`
+`date`: Accepts either the standard format `YYYY-MM-DD HH:MM:SS` or relative time expressions such as `+Ns` (seconds), `+Nm` (minutes), `+Nh` (hours), and `+Nd` (days), where `N` is a numerical value.
 
 `to`: Description of the countdown (optional)
 
