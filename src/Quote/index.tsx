@@ -1,5 +1,5 @@
 import * as React from "react";
-import { WidgetType } from "src/types/WidgetTypes";
+import { WidgetType } from "src/types/Widgets";
 
 const Quote = ({ settings: { quote, author } }: QuoteProps) => {
 	return (

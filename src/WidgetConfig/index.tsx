@@ -21,6 +21,7 @@ const WidgetConfig = ({
 				<Widget
 					settings={state}
 					helperFunctions={helperFunctions}
+					// @ts-ignore
 					leafId={leaf.id}
 				/>
 			)}

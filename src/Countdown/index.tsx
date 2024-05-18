@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { moment } from "obsidian";
-import { WidgetType } from "src/types/WidgetTypes";
+import { WidgetType } from "src/types/Widgets";
+import { Moment } from "moment";
 
 const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 	const [countdown, setCountdown] = useState<CountdownConfig>({
@@ -12,14 +13,13 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 	const [invalidDate, setInvalidDate] = useState<string | null>(null);
 
 	useEffect(() => {
-
 		// Check if date is in the format +[number][s/m/h]
 		const dateRegex = /^(\+)(\d+)([smh])$/;
 		const dateMatch = date.match(dateRegex);
-		var endTime;
+		let endTime: Moment;
 
 		if (dateMatch) {
-			const [, operator, value, unit] = dateMatch;
+			const [, , value, unit] = dateMatch;
 
 			const currentTime = moment();
 			endTime = currentTime.clone();
@@ -35,7 +35,6 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 					endTime.add(parseInt(value), "hours");
 					break;
 			}
-
 		} else {
 			endTime = moment(`${date}`);
 		}

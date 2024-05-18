@@ -1,6 +1,6 @@
 import * as React from "react";
 import { moment } from "obsidian";
-import { WidgetType } from "src/types/WidgetTypes";
+import { WidgetType } from "src/types/Widgets";
 
 const Clock = ({ settings }: ClockProps) => {
 	const [time, setTime] = React.useState(moment().format("HH:mm:ss"));
