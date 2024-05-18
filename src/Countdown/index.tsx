@@ -12,7 +12,33 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 	const [invalidDate, setInvalidDate] = useState<string | null>(null);
 
 	useEffect(() => {
-		const endTime = moment(`${date}`);
+
+		// Check if date is in the format +[number][s/m/h]
+		const dateRegex = /^(\+)(\d+)([smh])$/;
+		const dateMatch = date.match(dateRegex);
+		var endTime;
+
+		if (dateMatch) {
+			const [, operator, value, unit] = dateMatch;
+
+			const currentTime = moment();
+			endTime = currentTime.clone();
+
+			switch (unit) {
+				case "s":
+					endTime.add(parseInt(value), "seconds");
+					break;
+				case "m":
+					endTime.add(parseInt(value), "minutes");
+					break;
+				case "h":
+					endTime.add(parseInt(value), "hours");
+					break;
+			}
+
+		} else {
+			endTime = moment(`${date}`);
+		}
 
 		if (!endTime.isValid()) {
 			setInvalidDate("Invalid Date");
