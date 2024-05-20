@@ -130,6 +130,24 @@ If your plugin does not need CSS, delete this file.
 }
 
 /*
+  Note navigator
+*/
+.NoteNavigator_Container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--color-base-10);
+  border-top: 1px solid var(--color-accent-1);
+  border-bottom: 1px solid var(--color-accent-1);
+}
+
+.NoteNavigator_Container a {
+  color: var(--text-accent);
+  text-decoration: none;
+}
+
+/*
   Widget config
 */
 .WidgetConfig__actions {
@@ -147,3 +165,4 @@ If your plugin does not need CSS, delete this file.
 .WidgetConfig__input-group {
   margin: 10px 0;
 }
+

@@ -5,6 +5,7 @@ import { QuoteSettings } from "src/Quote";
 import { CounterSettings } from "src/Counter";
 import { ClockSettings } from "src/Clock";
 import { CountdownSettings } from "src/Countdown";
+import { NoteNavigatorSettings } from "src/NoteNavigator";
 import { WidgetType } from "src/types/Widgets";
 
 const Config = ({ setState, state }: IConfigProps) => {
@@ -62,6 +63,27 @@ const Config = ({ setState, state }: IConfigProps) => {
 								setState({
 									...state,
 									author,
+								});
+							}}
+						/>
+					</div>
+				</>
+			)}
+
+			{state?.type === "navigator" && (
+				<>
+					<div className="WidgetConfig__input-group">
+						<label>Navigator</label>
+						<br />
+						<input
+							type="text"
+							value={(state as NoteNavigatorSettings).format}
+							onChange={(ev) => {
+								const format = ev.target.value;
+
+								setState({
+									...state,
+									format,
 								});
 							}}
 						/>
