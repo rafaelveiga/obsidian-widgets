@@ -21,4 +21,9 @@ export const ALL_WIDGETS = [
 		slug: "counter",
 		markdown: "```widgets\ntype: counter\ntext: Lorem ipsum\n```\n",
 	},
+	{
+		title: "Navigator",
+		slug: "navigator",
+		markdown: "```widgets\ntype: navigator\nformat:\n```\n",
+	},
 ];
