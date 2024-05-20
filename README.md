@@ -112,10 +112,12 @@ text: Push-ups
 
 #### Example
 
+````
 ```widgets
 type: navigator
 format: YYYY/MM/DD
 ```
+````
 
 ## Customizing your widgets
 
