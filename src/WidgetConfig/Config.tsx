@@ -73,17 +73,17 @@ const Config = ({ setState, state }: IConfigProps) => {
 			{state?.type === "navigator" && (
 				<>
 					<div className="WidgetConfig__input-group">
-						<label>Navigator</label>
+						<label>Format</label>
 						<br />
 						<input
 							type="text"
-							value={(state as NoteNavigatorSettings).format}
+							value={(state as NoteNavigatorSettings).formatNav}
 							onChange={(ev) => {
-								const format = ev.target.value;
+								const formatNav = ev.target.value;
 
 								setState({
 									...state,
-									format,
+									formatNav,
 								});
 							}}
 						/>

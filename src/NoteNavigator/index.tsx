@@ -14,7 +14,7 @@ const NoteNavigator = ({ settings, app }: NoteNavigatorProps) => {
 			</div>
 		)};
 
-	let format = settings.format;
+	let format = settings.formatNav;
 
 	if (!format) {
 		format = "YYYY-MM-DD";
@@ -51,7 +51,7 @@ export default NoteNavigator;
 
 export interface NoteNavigatorSettings {
 	type: WidgetType;
-	format: string;
+	formatNav: string;
 }
 
 interface NoteNavigatorProps {
