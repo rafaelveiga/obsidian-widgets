@@ -76,6 +76,27 @@ date: 2024-01-01 00:00:00
 to: New Year! 🎉
 ```
 ````
+## Countup
+
+![Countup](public/countup.png)
+
+#### Configuration Body:
+
+`type`: countdown
+
+`date`: Accepts standard format `YYYY-MM-DD HH:MM:SS`
+
+`from`: Description of the countdown (optional)
+
+#### Example
+
+````
+```widgets
+type: countup
+date: 2020-03-30 00:00:00
+from: Obsidian Release Date 🎉
+```
+````
 
 ## Counter
 
