@@ -5,6 +5,7 @@ import { QuoteSettings } from "src/Quote";
 import { CounterSettings } from "src/Counter";
 import { ClockSettings } from "src/Clock";
 import { CountdownSettings } from "src/Countdown";
+import { CountupSettings } from "src/Countup";
 import { WidgetType } from "src/types/Widgets";
 
 const Config = ({ setState, state }: IConfigProps) => {
@@ -146,6 +147,43 @@ const Config = ({ setState, state }: IConfigProps) => {
 					</div>
 				</>
 			)}
+			{state.type === "countup" && (
+				<>
+					<div className="WidgetConfig__input-group">
+						<label>Date</label>
+						<br />
+						<input
+							type="datetime-local"
+							value={(state as CountupSettings).date}
+							onChange={(ev) => {
+								const date = ev.target.value;
+
+								setState({
+									...state,
+									date,
+								});
+							}}
+						/>
+					</div>
+
+					<div className="WidgetConfig__input-group">
+						<label>To</label>
+						<br />
+						<input
+							type="text"
+							value={(state as CountupSettings).from}
+							onChange={(ev) => {
+								const to = ev.target.value;
+
+								setState({
+									...state,
+									to,
+								});
+							}}
+						/>
+					</div>
+				</>
+			)}			
 		</div>
 	);
 };
