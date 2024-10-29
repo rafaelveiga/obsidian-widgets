@@ -82,11 +82,11 @@ to: New Year! 🎉
 
 #### Configuration Body:
 
-`type`: countdown
+`type`: countup
 
 `date`: Accepts standard format `YYYY-MM-DD HH:MM:SS`
 
-`from`: Description of the countdown (optional)
+`from`: Description of the countup (optional)
 
 #### Example
 
