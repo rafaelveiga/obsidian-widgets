@@ -10,10 +10,10 @@ const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
 			let path: string;
 
 			if (leafId.length > 0) {
-				path = leafId;
+				path = leafId + (settings.id ? `-${settings.id}` : "");
 			} else {
 				const { path: filePath } = helperFunctions.getCurrentOpenFile();
-				path = filePath;
+				path = filePath + (settings.id ? `-${settings.id}` : "");
 			}
 
 			if (!data[path]) {
@@ -54,10 +54,10 @@ const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
 			let path: string;
 
 			if (leafId.length > 0) {
-				path = leafId;
+				path = leafId + (settings.id ? `-${settings.id}` : "");
 			} else {
 				const { path: filePath } = helperFunctions.getCurrentOpenFile();
-				path = filePath;
+				path = filePath + (settings.id ? `-${settings.id}` : "");
 			}
 
 			helperFunctions.writeToDataJson({
@@ -83,6 +83,7 @@ const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
 export interface CounterSettings {
 	type: WidgetType;
 	text: string;
+	id: string;
 }
 
 interface CounterProps {
