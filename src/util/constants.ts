@@ -11,6 +11,12 @@ export const ALL_WIDGETS = [
 			"```widgets\ntype: countdown\ndate: YYYY-MM-DD HH:MM:SS\nto:\n```\n",
 	},
 	{
+		title: "Countup",
+		slug: "countup",
+		markdown:
+			"```widgets\ntype: countup\ndate: YYYY-MM-DD HH:MM:SS\nto:\n```\n",
+	},
+	{
 		title: "Quote",
 		slug: "quote",
 		markdown:

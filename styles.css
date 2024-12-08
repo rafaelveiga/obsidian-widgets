@@ -103,6 +103,42 @@ If your plugin does not need CSS, delete this file.
 }
 
 /*
+  Countup Widget
+*/
+.Countup_Container {
+  display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.Countup_Item {
+  text-align: center;
+	border: 1px solid var(--color-accent-1);
+	border-radius: 10px;
+	padding: 20px 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.Countup_Item h3 {
+  font-size: 50px;
+	line-height: 50px;
+	margin: 0px;
+}
+
+.Countup_Item small {
+  color: var(--text-muted)
+}
+
+.Countup_From {
+  text-align: center;
+	margin-top: 12px;
+	color: var(--text-muted);
+}
+
+/*
   Counter Widget
 */
 .Counter__container {

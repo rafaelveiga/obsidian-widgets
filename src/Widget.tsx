@@ -1,6 +1,7 @@
 import * as React from "react";
 import Clock, { ClockSettings } from "./Clock";
 import Countdown, { CountdownSettings } from "./Countdown";
+import Countup, { CountupSettings } from "./Countup";
 import Quote, { QuoteSettings } from "./Quote";
 import Counter, { CounterSettings } from "./Counter";
 import { HelperFunctions } from "./types/HelperFunctions";
@@ -29,10 +30,14 @@ export const Widget = ({ settings, helperFunctions, leafId }: WidgetProps) => {
 		);
 	}
 
+	if (settings.type === "countup") {
+		return <Countup settings={settings as CountupSettings} />;
+	}
+
 	return (
 		<code>
 			Widgets: Wrong settings. <br /> Available widgets: "clock", "quote",
-			"countdown", "counter"
+			"countdown", "countup", "counter"
 		</code>
 	);
 };

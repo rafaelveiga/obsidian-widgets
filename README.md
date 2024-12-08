@@ -79,6 +79,27 @@ to: New Year! 🎉
 completedLabel: Happy new year! 🎉
 ```
 ````
+## Countup
+
+![Countup](public/countup.png)
+
+#### Configuration Body:
+
+`type`: countup
+
+`date`: Accepts standard format `YYYY-MM-DD HH:MM:SS`
+
+`from`: Description of the countup (optional)
+
+#### Example
+
+````
+```widgets
+type: countup
+date: 2020-03-30 00:00:00
+from: Obsidian Release Date 🎉
+```
+````
 
 ## Counter
 
