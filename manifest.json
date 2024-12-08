@@ -1,9 +1,9 @@
 {
 	"id": "widgets",
 	"name": "Widgets",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"minAppVersion": "0.15.0",
-	"description": "Adds widgets to your notes like clock, countdown and quotes.",
+	"description": "Add widgets to your notes like clock, countdown, and quotes.",
 	"author": "Rafael Veiga",
 	"authorUrl": "https://rafaelveiga.github.io/",
 	"fundingUrl": "https://ko-fi.com/rafaelveiga",

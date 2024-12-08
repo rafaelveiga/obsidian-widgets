@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-widgets",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"description": "Add cool widgets to your notes or your dashboard in Obsidian",
 	"main": "main.js",
 	"scripts": {
@@ -9,8 +9,8 @@
 		"version": "node version-bump.mjs && git add manifest.json versions.json"
 	},
 	"keywords": [],
-	"author": "",
-	"license": "MIT",
+	"author": "Rafael Veiga",
+	"license": "GPL-3.0",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
 		"@types/react": "^18.0.27",
