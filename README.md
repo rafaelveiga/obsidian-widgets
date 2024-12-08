@@ -67,6 +67,8 @@ author: Lorem Ipsum
 
 `to`: Description of the countdown (optional)
 
+`completedLabel`: The label to show when the countdown is complete (optional)
+
 #### Example
 
 ````
