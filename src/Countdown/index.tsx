@@ -3,8 +3,10 @@ import { moment } from "obsidian";
 import { WidgetType } from "src/types/Widgets";
 import { Moment } from "moment";
 
-const Countdown = ({ settings: { date, to } }: CountdownProps) => {
-	const [countdown, setCountdown] = useState<CountdownConfig>({
+const Countdown = ({
+	settings: { date, to, completedLabel },
+}: CountdownProps) => {
+	const [countdown, setCountdown] = useState<CountdownState>({
 		days: 0,
 		hours: 0,
 		minutes: 0,
@@ -52,7 +54,7 @@ const Countdown = ({ settings: { date, to } }: CountdownProps) => {
 			const diffInSeconds = endTime.diff(currentTime, "seconds");
 
 			if (diffInSeconds < 0) {
-				setInvalidDate("Completed! 🎉");
+				setInvalidDate(completedLabel || "Completed! 🎉");
 				return;
 			}
 
@@ -113,13 +115,14 @@ export interface CountdownSettings {
 	type: WidgetType;
 	date: string;
 	to: string;
+	completedLabel: string;
 }
 
 interface CountdownProps {
 	settings: CountdownSettings;
 }
 
-interface CountdownConfig {
+interface CountdownState {
 	days: number;
 	hours: number;
 	minutes: number;
