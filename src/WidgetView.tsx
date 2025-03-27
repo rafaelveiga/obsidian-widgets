@@ -20,6 +20,7 @@ export class WidgetView extends ItemView {
 		author: "",
 		date: "",
 		format: "24hr",
+		formatNav: "YYYY-MM-DD",
 		quote: "",
 		text: "",
 		to: "",

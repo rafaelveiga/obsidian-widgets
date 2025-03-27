@@ -3,6 +3,7 @@ import Clock, { ClockSettings } from "./Clock";
 import Countdown, { CountdownSettings } from "./Countdown";
 import Quote, { QuoteSettings } from "./Quote";
 import Counter, { CounterSettings } from "./Counter";
+import NoteNavigator, { NoteNavigatorSettings } from "./NoteNavigator";
 import { HelperFunctions } from "./types/HelperFunctions";
 import { WidgetSettings } from "./types/Widgets";
 
@@ -29,10 +30,19 @@ export const Widget = ({ settings, helperFunctions, leafId }: WidgetProps) => {
 		);
 	}
 
+	if (settings.type === "navigator") {
+		return (
+			<NoteNavigator
+			   settings={settings as NoteNavigatorSettings} 
+			   app={app}
+			 />
+		);
+	}
+
 	return (
 		<code>
 			Widgets: Wrong settings. <br /> Available widgets: "clock", "quote",
-			"countdown", "counter"
+			"countdown", "counter", "navigator"
 		</code>
 	);
 };
