@@ -4,7 +4,7 @@ import { WidgetType } from "src/types/Widgets";
 import { Moment } from "moment";
 
 const Countdown = ({
-	settings: { date, to, completedLabel },
+	settings: { date, to, completedLabel, show },
 }: CountdownProps) => {
 	const [countdown, setCountdown] = useState<CountdownState>({
 		days: 0,
@@ -13,6 +13,14 @@ const Countdown = ({
 		seconds: 0,
 	});
 	const [invalidDate, setInvalidDate] = useState<string | null>(null);
+
+	const showItems = show?.split(",").map((item) => item.trim()) || [];
+	const showState: CountdownShowState = {
+		days: show ? showItems.includes("days") : true,
+		hours: show ? showItems.includes("hours") : true,
+		minutes: show ? showItems.includes("minutes") : true,
+		seconds: show ? showItems.includes("seconds") : true,
+	};
 
 	useEffect(() => {
 		// Check if date is in the format +[number][s/m/h/d]
@@ -87,22 +95,30 @@ const Countdown = ({
 	return (
 		<>
 			<div className="Countdown_Container">
-				<div className="Countdown_Item">
-					<h3>{countdown.days}</h3>
-					<small>days</small>
-				</div>
-				<div className="Countdown_Item">
-					<h3>{countdown.hours}</h3>
-					<small>hours</small>
-				</div>
-				<div className="Countdown_Item">
-					<h3>{countdown.minutes}</h3>
-					<small>minutes</small>
-				</div>
-				<div className="Countdown_Item">
-					<h3>{countdown.seconds}</h3>
-					<small>seconds</small>
-				</div>
+				{showState.days && (
+					<div className="Countdown_Item">
+						<h3>{countdown.days}</h3>
+						<small>days</small>
+					</div>
+				)}
+				{showState.hours && (
+					<div className="Countdown_Item">
+						<h3>{countdown.hours}</h3>
+						<small>hours</small>
+					</div>
+				)}
+				{showState.minutes && (
+					<div className="Countdown_Item">
+						<h3>{countdown.minutes}</h3>
+						<small>minutes</small>
+					</div>
+				)}
+				{showState.seconds && (
+					<div className="Countdown_Item">
+						<h3>{countdown.seconds}</h3>
+						<small>seconds</small>
+					</div>
+				)}
 			</div>
 			<div className="Countdown_To">{to}</div>
 		</>
@@ -116,6 +132,7 @@ export interface CountdownSettings {
 	date: string;
 	to: string;
 	completedLabel: string;
+	show?: string;
 }
 
 interface CountdownProps {
@@ -127,4 +144,11 @@ interface CountdownState {
 	hours: number;
 	minutes: number;
 	seconds: number;
+}
+
+interface CountdownShowState {
+	days: boolean;
+	hours: boolean;
+	minutes: boolean;
+	seconds: boolean;
 }
