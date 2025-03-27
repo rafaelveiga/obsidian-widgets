@@ -106,6 +106,26 @@ const Config = ({ setState, state }: IConfigProps) => {
 						<option value="12hr">12 Hour</option>
 						<option value="24hr">24 Hour</option>
 					</select>
+					<br />
+					<br />
+					<label>Hide Seconds</label>
+					<br />
+					<input
+						type="checkbox"
+						checked={
+							(state as ClockSettings).hideSeconds === "true"
+						}
+						onChange={(ev) => {
+							const hideSeconds = ev.target.checked
+								? "true"
+								: "false";
+
+							setState({
+								...state,
+								hideSeconds,
+							});
+						}}
+					/>
 				</div>
 			)}
 
