@@ -3,7 +3,7 @@ import { DataJson, HelperFunctions } from "src/types/HelperFunctions";
 import { WidgetType } from "src/types/Widgets";
 
 const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
-	const [count, setCount] = useState(0);
+	const [count, setCount] = useState(parseInt(settings.startValue || "0"));
 
 	useEffect(() => {
 		helperFunctions.readFromDataJson().then((data: DataJson) => {
@@ -30,23 +30,26 @@ const Counter = ({ settings, helperFunctions, leafId }: CounterProps) => {
 	const increment = () => {
 		const currentCount = count;
 
-		setCount(currentCount + 1);
+		const increment = parseInt(settings.increment || "1");
+		setCount(currentCount + increment);
 
-		writeToDataJson(currentCount + 1);
+		writeToDataJson(currentCount + increment);
 	};
 
 	const decrement = () => {
 		const currentCount = count;
 
-		setCount(currentCount - 1);
+		const decrement = parseInt(settings.increment || "1");
+		setCount(currentCount - decrement);
 
-		writeToDataJson(currentCount - 1);
+		writeToDataJson(currentCount - decrement);
 	};
 
 	const reset = () => {
-		setCount(0);
+		const startValue = parseInt(settings.startValue || "0");
+		setCount(startValue);
 
-		writeToDataJson(0);
+		writeToDataJson(startValue);
 	};
 
 	const writeToDataJson = (value: number) => {
@@ -84,6 +87,8 @@ export interface CounterSettings {
 	type: WidgetType;
 	text: string;
 	id: string;
+	increment: string;
+	startValue: string;
 }
 
 interface CounterProps {
@@ -91,5 +96,14 @@ interface CounterProps {
 	helperFunctions: HelperFunctions;
 	leafId: string;
 }
+
+Counter.defaultProps = {
+	settings: {
+		text: "Count",
+		id: "",
+		increment: "1",
+		startValue: "0",
+	},
+};
 
 export default Counter;
