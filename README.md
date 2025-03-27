@@ -94,6 +94,10 @@ completedLabel: Happy new year! 🎉
 
 `id`: the id of the counter. Use this if you want to have more than one counter in the same note (optional)
 
+`increment`: The increment/decrement value that the counter will use to add and subtract from the count. Defaults to 1 if not present (optional)
+
+`startValue`: A starting value for the counter. Will reset to that value if the reset button is clicked. Defaults to 0 if not present (optional)
+
 #### Notice
 
 The counter widget is supported multiple times by note if you provide an unique `id` per counter. If you add more than one counter widget to a note without an `id`, they will share the same count. To sync the count between devices, make sure your `.obsidian/plugins` folder is synced between devices. This is where Obsidian stores the data for this plugin
