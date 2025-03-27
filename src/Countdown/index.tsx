@@ -4,9 +4,10 @@ import { WidgetType } from "src/types/Widgets";
 import { Moment } from "moment";
 
 const Countdown = ({
-	settings: { date, to, completedLabel },
+	settings: { date, to, completedLabel, show },
 }: CountdownProps) => {
 	const [countdown, setCountdown] = useState<CountdownState>({
+		years: 0,
 		days: 0,
 		hours: 0,
 		minutes: 0,
@@ -14,9 +15,18 @@ const Countdown = ({
 	});
 	const [invalidDate, setInvalidDate] = useState<string | null>(null);
 
+	const showItems = show?.split(",").map((item) => item.trim()) || [];
+	const showState: CountdownShowState = {
+		years: show ? showItems.includes("years") : true,
+		days: show ? showItems.includes("days") : true,
+		hours: show ? showItems.includes("hours") : true,
+		minutes: show ? showItems.includes("minutes") : true,
+		seconds: show ? showItems.includes("seconds") : true,
+	};
+
 	useEffect(() => {
-		// Check if date is in the format +[number][s/m/h/d]
-		const dateRegex = /^(\+)(\d+)([smhd])$/;
+		// Check if date is in the format +[number][s/m/h/d/y]
+		const dateRegex = /^(\+)(\d+)([smhdy])$/;
 		const dateMatch = date.match(dateRegex);
 		let endTime: Moment;
 
@@ -39,6 +49,9 @@ const Countdown = ({
 				case "d":
 					endTime.add(parseInt(value), "days");
 					break;
+				case "y":
+					endTime.add(parseInt(value), "years");
+					break;
 			}
 		} else {
 			endTime = moment(`${date}`);
@@ -58,12 +71,13 @@ const Countdown = ({
 				return;
 			}
 
-			const days = Math.floor(diffInSeconds / 86400);
+			const years = Math.floor(diffInSeconds / 31536000);
+			const days = Math.floor((diffInSeconds % 31536000) / 86400);
 			const hours = Math.floor((diffInSeconds % 86400) / 3600);
 			const minutes = Math.floor((diffInSeconds % 3600) / 60);
 			const seconds = Math.floor(diffInSeconds % 60);
 
-			setCountdown({ days, hours, minutes, seconds });
+			setCountdown({ years, days, hours, minutes, seconds });
 		}, 1000);
 
 		return () => {
@@ -87,22 +101,36 @@ const Countdown = ({
 	return (
 		<>
 			<div className="Countdown_Container">
-				<div className="Countdown_Item">
-					<h3>{countdown.days}</h3>
-					<small>days</small>
-				</div>
-				<div className="Countdown_Item">
-					<h3>{countdown.hours}</h3>
-					<small>hours</small>
-				</div>
-				<div className="Countdown_Item">
-					<h3>{countdown.minutes}</h3>
-					<small>minutes</small>
-				</div>
-				<div className="Countdown_Item">
-					<h3>{countdown.seconds}</h3>
-					<small>seconds</small>
-				</div>
+				{showState.years && (
+					<div className="Countdown_Item">
+						<h3>{countdown.years}</h3>
+						<small>years</small>
+					</div>
+				)}
+				{showState.days && (
+					<div className="Countdown_Item">
+						<h3>{countdown.days}</h3>
+						<small>days</small>
+					</div>
+				)}
+				{showState.hours && (
+					<div className="Countdown_Item">
+						<h3>{countdown.hours}</h3>
+						<small>hours</small>
+					</div>
+				)}
+				{showState.minutes && (
+					<div className="Countdown_Item">
+						<h3>{countdown.minutes}</h3>
+						<small>minutes</small>
+					</div>
+				)}
+				{showState.seconds && (
+					<div className="Countdown_Item">
+						<h3>{countdown.seconds}</h3>
+						<small>seconds</small>
+					</div>
+				)}
 			</div>
 			<div className="Countdown_To">{to}</div>
 		</>
@@ -116,6 +144,7 @@ export interface CountdownSettings {
 	date: string;
 	to: string;
 	completedLabel: string;
+	show?: string;
 }
 
 interface CountdownProps {
@@ -123,8 +152,17 @@ interface CountdownProps {
 }
 
 interface CountdownState {
+	years: number;
 	days: number;
 	hours: number;
 	minutes: number;
 	seconds: number;
+}
+
+interface CountdownShowState {
+	years: boolean;
+	days: boolean;
+	hours: boolean;
+	minutes: boolean;
+	seconds: boolean;
 }

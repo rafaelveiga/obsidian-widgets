@@ -67,6 +67,8 @@ author: Lorem Ipsum
 
 `date`: Accepts either the standard format `YYYY-MM-DD HH:MM:SS` or relative time expressions such as `+Ns` (seconds), `+Nm` (minutes), `+Nh` (hours), and `+Nd` (days), where `N` is a numerical value.
 
+`show`: Controls what is showed on the countdown. Accepts a list of words that can be "years", "days", "hours", "minutes", "seconds". The list must be comma-divided. e.g.: `show: years, hours, minutes`. Defaults to showing all (optional)
+
 `to`: Description of the countdown (optional)
 
 `completedLabel`: The label to show when the countdown is complete (optional)
