@@ -85,6 +85,38 @@ const Config = ({ setState, state }: IConfigProps) => {
 							});
 						}}
 					/>
+					<br />
+					<br />
+					<label>Increment</label>
+					<br />
+					<input
+						type="number"
+						value={(state as CounterSettings).increment}
+						onChange={(ev) => {
+							const increment = ev.target.value;
+
+							setState({
+								...state,
+								increment,
+							});
+						}}
+					/>
+					<br />
+					<br />
+					<label>Start Value</label>
+					<br />
+					<input
+						type="number"
+						value={(state as CounterSettings).startValue}
+						onChange={(ev) => {
+							const startValue = ev.target.value;
+
+							setState({
+								...state,
+								startValue,
+							});
+						}}
+					/>
 				</div>
 			)}
 
