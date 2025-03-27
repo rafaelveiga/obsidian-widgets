@@ -7,6 +7,7 @@ const Countdown = ({
 	settings: { date, to, completedLabel, show },
 }: CountdownProps) => {
 	const [countdown, setCountdown] = useState<CountdownState>({
+		years: 0,
 		days: 0,
 		hours: 0,
 		minutes: 0,
@@ -16,6 +17,7 @@ const Countdown = ({
 
 	const showItems = show?.split(",").map((item) => item.trim()) || [];
 	const showState: CountdownShowState = {
+		years: show ? showItems.includes("years") : true,
 		days: show ? showItems.includes("days") : true,
 		hours: show ? showItems.includes("hours") : true,
 		minutes: show ? showItems.includes("minutes") : true,
@@ -23,8 +25,8 @@ const Countdown = ({
 	};
 
 	useEffect(() => {
-		// Check if date is in the format +[number][s/m/h/d]
-		const dateRegex = /^(\+)(\d+)([smhd])$/;
+		// Check if date is in the format +[number][s/m/h/d/y]
+		const dateRegex = /^(\+)(\d+)([smhdy])$/;
 		const dateMatch = date.match(dateRegex);
 		let endTime: Moment;
 
@@ -47,6 +49,9 @@ const Countdown = ({
 				case "d":
 					endTime.add(parseInt(value), "days");
 					break;
+				case "y":
+					endTime.add(parseInt(value), "years");
+					break;
 			}
 		} else {
 			endTime = moment(`${date}`);
@@ -66,12 +71,13 @@ const Countdown = ({
 				return;
 			}
 
-			const days = Math.floor(diffInSeconds / 86400);
+			const years = Math.floor(diffInSeconds / 31536000);
+			const days = Math.floor((diffInSeconds % 31536000) / 86400);
 			const hours = Math.floor((diffInSeconds % 86400) / 3600);
 			const minutes = Math.floor((diffInSeconds % 3600) / 60);
 			const seconds = Math.floor(diffInSeconds % 60);
 
-			setCountdown({ days, hours, minutes, seconds });
+			setCountdown({ years, days, hours, minutes, seconds });
 		}, 1000);
 
 		return () => {
@@ -95,6 +101,12 @@ const Countdown = ({
 	return (
 		<>
 			<div className="Countdown_Container">
+				{showState.years && (
+					<div className="Countdown_Item">
+						<h3>{countdown.years}</h3>
+						<small>years</small>
+					</div>
+				)}
 				{showState.days && (
 					<div className="Countdown_Item">
 						<h3>{countdown.days}</h3>
@@ -140,6 +152,7 @@ interface CountdownProps {
 }
 
 interface CountdownState {
+	years: number;
 	days: number;
 	hours: number;
 	minutes: number;
@@ -147,6 +160,7 @@ interface CountdownState {
 }
 
 interface CountdownShowState {
+	years: boolean;
 	days: boolean;
 	hours: boolean;
 	minutes: boolean;
