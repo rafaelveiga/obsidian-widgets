@@ -11,15 +11,17 @@ const Clock = ({ settings }: ClockProps) => {
 
 	React.useEffect(() => {
 		const clockInterval = setInterval(() => {
-			const showSeconds = settings.seconds === "true";
+			const hideSeconds = settings.hideSeconds
+				? settings.hideSeconds !== "false"
+				: false;
 			const timeFormat =
 				settings.format === "12hr"
-					? showSeconds
-						? "hh:mm:ss a"
-						: "hh:mm a"
-					: showSeconds
-					? "HH:mm:ss"
-					: "HH:mm";
+					? hideSeconds
+						? "hh:mm a"
+						: "hh:mm:ss a"
+					: hideSeconds
+					? "HH:mm"
+					: "HH:mm:ss";
 
 			setAmPm(moment().format("A"));
 			setTime(moment().format(timeFormat));
@@ -52,7 +54,7 @@ export default Clock;
 export interface ClockSettings {
 	type: WidgetType;
 	format: "12hr" | "24hr";
-	seconds: string;
+	hideSeconds: string | null;
 }
 
 interface ClockProps {
@@ -63,6 +65,6 @@ Clock.defaultProps = {
 	settings: {
 		type: "clock",
 		format: "24hr",
-		seconds: true,
+		hideSeconds: null,
 	},
 };

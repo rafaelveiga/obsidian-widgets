@@ -24,6 +24,8 @@ Currently, the available widgets are:
 
 `format`: the time format you want to display on the clock. Supports "12hr", "24hr"
 
+`hideSeconds`: if you want to display seconds or not. Supports "false" or "true". If ommited, will display seconds (optional)
+
 #### Example
 
 ````

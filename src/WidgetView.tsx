@@ -24,6 +24,7 @@ export class WidgetView extends ItemView {
 		text: "",
 		to: "",
 		isEditing: true,
+		hideSeconds: null,
 	};
 
 	constructor(leaf: WorkspaceLeaf, helperFunctions: HelperFunctions) {
