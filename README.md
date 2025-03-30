@@ -1,3 +1,5 @@
+![Obsidian Widgets](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json&query=%24.widgets.downloads&label=Total%20Plugin%20Downloads&color=%237c3aed)
+
 # Obsidian Widgets
 
 Adds cool widgets within Obsidian notes
