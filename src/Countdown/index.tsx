@@ -4,7 +4,7 @@ import { WidgetType } from "src/types/Widgets";
 import { Moment } from "moment";
 
 const Countdown = ({
-	settings: { date, to, completedLabel, show },
+	settings: { date, to, completedLabel, show, excludeWeekends, excludedDates },
 }: CountdownProps) => {
 	const [countdown, setCountdown] = useState<CountdownState>({
 		years: 0,
@@ -22,6 +22,46 @@ const Countdown = ({
 		hours: show ? showItems.includes("hours") : true,
 		minutes: show ? showItems.includes("minutes") : true,
 		seconds: show ? showItems.includes("seconds") : true,
+	};
+
+	const isExcludedDate = (date: Moment): boolean => {
+		// Check if it's a weekend and weekends are excluded
+		if (excludeWeekends === "true" && (date.day() === 0 || date.day() === 6)) {
+			return true;
+		}
+
+		// Check if it's in the excluded dates list
+		if (excludedDates) {
+			const excludedDatesList = excludedDates.split(",").map(date => date.trim());
+			return excludedDatesList.some(excludedDate => {
+				// Check if it's a date range (YYYY-MM-DD:YYYY-MM-DD)
+				if (excludedDate.includes(":")) {
+					const [startDate, endDate] = excludedDate.split(":").map(d => d.trim());
+					const startMoment = moment(startDate);
+					const endMoment = moment(endDate);
+					return date.isSameOrAfter(startMoment, 'day') && date.isSameOrBefore(endMoment, 'day');
+				}
+				// Single date
+				const excludedMoment = moment(excludedDate);
+				return date.isSame(excludedMoment, 'day');
+			});
+		}
+
+		return false;
+	};
+
+	const calculateWorkingDays = (start: Moment, end: Moment): number => {
+		let workingDays = 0;
+		let current = start.clone();
+
+		while (current.isBefore(end, 'day')) {
+			if (!isExcludedDate(current)) {
+				workingDays++;
+			}
+			current.add(1, 'day');
+		}
+
+		return workingDays;
 	};
 
 	useEffect(() => {
@@ -71,8 +111,13 @@ const Countdown = ({
 				return;
 			}
 
+			// Calculate working days if excludeWeekends or excludedDates is set
+			let days = Math.floor((diffInSeconds % 31536000) / 86400);
+			if (excludeWeekends === "true" || excludedDates) {
+				days = calculateWorkingDays(currentTime, endTime);
+			}
+
 			const years = Math.floor(diffInSeconds / 31536000);
-			const days = Math.floor((diffInSeconds % 31536000) / 86400);
 			const hours = Math.floor((diffInSeconds % 86400) / 3600);
 			const minutes = Math.floor((diffInSeconds % 3600) / 60);
 			const seconds = Math.floor(diffInSeconds % 60);
@@ -83,7 +128,7 @@ const Countdown = ({
 		return () => {
 			clearInterval(clockInterval);
 		};
-	}, [date]);
+	}, [date, excludeWeekends, excludedDates]);
 
 	if (invalidDate) {
 		return (
@@ -145,6 +190,8 @@ export interface CountdownSettings {
 	to: string;
 	completedLabel: string;
 	show?: string;
+	excludeWeekends?: string;
+	excludedDates?: string;
 }
 
 interface CountdownProps {
