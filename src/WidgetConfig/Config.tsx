@@ -196,6 +196,41 @@ const Config = ({ setState, state }: IConfigProps) => {
 							}}
 						/>
 					</div>
+
+					<div className="WidgetConfig__input-group">
+						<label>Exclude Weekends</label>
+						<br />
+						<input
+							type="checkbox"
+							checked={(state as CountdownSettings).excludeWeekends === "true"}
+							onChange={(ev) => {
+								const excludeWeekends = ev.target.checked ? "true" : "false";
+
+								setState({
+									...state,
+									excludeWeekends,
+								});
+							}}
+						/>
+					</div>
+
+					<div className="WidgetConfig__input-group">
+						<label>Excluded Dates (comma-separated, YYYY-MM-DD)</label>
+						<br />
+						<input
+							type="text"
+							value={(state as CountdownSettings).excludedDates || ""}
+							onChange={(ev) => {
+								const excludedDates = ev.target.value;
+
+								setState({
+									...state,
+									excludedDates,
+								});
+							}}
+							placeholder="2024-12-25, 2024-12-31"
+						/>
+					</div>
 				</>
 			)}
 		</div>

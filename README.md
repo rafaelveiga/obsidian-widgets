@@ -75,6 +75,14 @@ author: Lorem Ipsum
 
 `completedLabel`: The label to show when the countdown is complete (optional)
 
+`excludeWeekends`: Set to "true" to exclude weekends (Saturday and Sunday) from the countdown (optional)
+
+`excludedDates`: Comma-separated list of dates to exclude from the countdown. Can be:
+- Single dates in `YYYY-MM-DD` format
+- Date ranges in `YYYY-MM-DD:YYYY-MM-DD` format
+- A combination of both
+Example: `2024-04-11:2024-04-22, 2024-04-25` (optional)
+
 #### Example
 
 ````
@@ -83,6 +91,8 @@ type: countdown
 date: 2024-01-01 00:00:00
 to: New Year! 🎉
 completedLabel: Happy new year! 🎉
+excludeWeekends: true
+excludedDates: 2024-12-25:2024-12-31
 ```
 ````
 
